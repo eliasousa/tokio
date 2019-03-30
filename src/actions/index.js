@@ -24,8 +24,8 @@ export const createAdmin = formValues => async dispatch => {
     const response = await berlim.post("/admins", { admin: formValues });
 
     dispatch({ type: CREATE_ADMIN, payload: response.data.data });
-    dispatch(sendFlashMessage("Admin criado com sucesso!", "green"));
     history.push("/admins");
+    dispatch(sendFlashMessage("Admin criado com sucesso!", "green"));
   } catch (error) {
     dispatch(_showServerErrors(error));
   }
