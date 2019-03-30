@@ -5,8 +5,9 @@ import AdminList from "./admins/AdminList";
 import AdminCreate from "./admins/AdminCreate";
 import AdminEdit from "./admins/AdminEdit";
 import AdminDelete from "./admins/AdminDelete";
-import Header from "./Header";
 import history from "../history";
+import Header from "./Header";
+import FlashMessage from "./FlashMessage";
 
 export default class App extends Component {
   render() {
@@ -15,6 +16,7 @@ export default class App extends Component {
         <Router history={history}>
           <div>
             <Header />
+            <FlashMessage />
             <Switch>
               <Route path="/admins" exact component={AdminList} />
               <Route path="/admins/new" exact component={AdminCreate} />
