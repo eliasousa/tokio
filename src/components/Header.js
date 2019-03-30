@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { isAuthenticated, logoutUser } from "../apis/auth";
+import { isAuthenticated, logoutUser, isAdmin } from "../apis/auth";
 
 class Header extends Component {
   render() {
-    const { isLoggedIn } = this.props;
+    const { isAuthenticated, isAdmin } = this.props;
 
     return (
       <div className="ui secondary pointing menu">
@@ -14,11 +14,15 @@ class Header extends Component {
           GoVoucher
         </Link>
 
-        {isLoggedIn && (
+        {isAuthenticated && (
           <div className="right menu">
-            <Link to="/admins" className="item">
-              Admins
-            </Link>
+            {isAdmin && (
+              <div className="right menu">
+                <Link to="/admins" className="item">
+                  Admins
+                </Link>
+              </div>
+            )}
             <Link to="/login" onClick={logoutUser} className="item">
               Sair
             </Link>
@@ -30,7 +34,7 @@ class Header extends Component {
 }
 
 const mapStateToProps = () => {
-  return { isLoggedIn: isAuthenticated() };
+  return { isAuthenticated: isAuthenticated(), isAdmin: isAdmin() };
 };
 
 export default connect(mapStateToProps)(Header);

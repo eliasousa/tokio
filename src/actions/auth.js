@@ -10,6 +10,6 @@ export const login = formValues => async dispatch => {
     history.push("/");
     dispatch(sendFlashMessage("Login feito com sucesso!", "green"));
   } catch (_error) {
-    dispatch(sendFlashMessage("Usuario ou senha invalido!", "red"));
+    dispatch(sendFlashMessage("Falha ao logar!", "red"));
   }
 };

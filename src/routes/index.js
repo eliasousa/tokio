@@ -9,7 +9,7 @@ import AdminDelete from "../components/admins/AdminDelete";
 import history from "../history";
 import Header from "../components/Header";
 import FlashMessage from "../components/FlashMessage";
-import { isAuthenticated } from "../apis/auth";
+import { isAuthenticated, isAdmin } from "../apis/auth";
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -26,6 +26,25 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   />
 );
 
+const AdminRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={props =>
+      isAuthenticated() ? (
+        isAdmin() ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+        )
+      ) : (
+        <Redirect
+          to={{ pathname: "/login", state: { from: props.location } }}
+        />
+      )
+    }
+  />
+);
+
 const Routes = () => (
   <div className="ui container">
     <Router history={history}>
@@ -33,16 +52,14 @@ const Routes = () => (
         <Header />
         <FlashMessage />
         <Switch>
-          <Route path="/login" exact component={Login} />
           <PrivateRoute exact path="/" component={() => <h1>Dashboard</h1>} />
-          <PrivateRoute path="/admins" exact component={AdminList} />
-          <PrivateRoute path="/admins/new" exact component={AdminCreate} />
-          <PrivateRoute path="/admins/:id/edit" exact component={AdminEdit} />
-          <PrivateRoute
-            path="/admins/:id/delete"
-            exact
-            component={AdminDelete}
-          />
+
+          <AdminRoute path="/admins" exact component={AdminList} />
+          <AdminRoute path="/admins/new" exact component={AdminCreate} />
+          <AdminRoute path="/admins/:id/edit" exact component={AdminEdit} />
+          <AdminRoute path="/admins/:id/delete" exact component={AdminDelete} />
+
+          <Route path="/login" exact component={Login} />
           <Route path="*" component={() => <h1>Page not found</h1>} />
         </Switch>
       </div>
