@@ -15,7 +15,13 @@ class AdminEdit extends Component {
   render() {
     return (
       <div>
-        <h3>Editar Admin</h3>
+        <h2 className="ui header">
+          <i className="address book outline icon" />
+          <div className="content">
+            Editar Admin
+            <div className="sub header">Gerenciamento dos Administradores</div>
+          </div>
+        </h2>
         <AdminForm initialValues={this.props.admin} onSubmit={this.onSubmit} />
       </div>
     );

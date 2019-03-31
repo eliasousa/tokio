@@ -14,25 +14,23 @@ import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 
 const Routes = () => (
-  <div className="ui container">
-    <Router history={history}>
-      <div>
-        <Header />
-        <FlashMessage />
-        <Switch>
-          <PrivateRoute exact path="/" component={() => <h1>Dashboard</h1>} />
+  <Router history={history}>
+    <Header />
+    <div className="ui main container" style={{ marginTop: "5em" }}>
+      <FlashMessage />
+      <Switch>
+        <PrivateRoute exact path="/" component={() => <h1>Dashboard</h1>} />
 
-          <AdminRoute exact path="/admins" component={AdminList} />
-          <AdminRoute exact path="/admins/new" component={AdminCreate} />
-          <AdminRoute exact path="/admins/:id/edit" component={AdminEdit} />
-          <AdminRoute exact path="/admins/:id/delete" component={AdminDelete} />
+        <AdminRoute exact path="/admins" component={AdminList} />
+        <AdminRoute exact path="/admins/new" component={AdminCreate} />
+        <AdminRoute exact path="/admins/:id/edit" component={AdminEdit} />
+        <AdminRoute exact path="/admins/:id/delete" component={AdminDelete} />
 
-          <Route exact path="/login" component={Login} />
-          <Route path="*" component={() => <h1>Page not found</h1>} />
-        </Switch>
-      </div>
-    </Router>
-  </div>
+        <Route exact path="/login" component={Login} />
+        <Route path="*" component={() => <h1>Page not found</h1>} />
+      </Switch>
+    </div>
+  </Router>
 );
 
 export default Routes;

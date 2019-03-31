@@ -9,25 +9,28 @@ class Header extends Component {
     const { isAuthenticated, isAdmin } = this.props;
 
     return (
-      <div className="ui secondary pointing menu">
-        <Link to="/" className="item">
-          GoVoucher
-        </Link>
+      <div className="ui fixed inverted menu">
+        <div className="ui container">
+          <Link to="/" className="header item">
+            <i className="address card icon" />
+            GoVoucher
+          </Link>
 
-        {isAuthenticated && (
-          <div className="right menu">
-            {isAdmin && (
-              <div className="right menu">
-                <Link to="/admins" className="item">
-                  Admins
-                </Link>
-              </div>
-            )}
-            <Link to="/login" onClick={logoutUser} className="item">
-              Sair
-            </Link>
-          </div>
-        )}
+          {isAuthenticated && (
+            <div className="right menu">
+              {isAdmin && (
+                <div className="right menu">
+                  <Link to="/admins" className="item">
+                    <i className="address book outline icon" /> Admins
+                  </Link>
+                </div>
+              )}
+              <Link to="/login" onClick={logoutUser} className="item">
+                <i className="sign-out icon" /> Sair
+              </Link>
+            </div>
+          )}
+        </div>
       </div>
     );
   }

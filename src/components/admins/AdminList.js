@@ -10,28 +10,33 @@ class AdminList extends Component {
 
   renderActions(admin) {
     return (
-      <div className="right floated content">
-        <Link to={`/admins/${admin.id}/edit`} className="ui button primary">
-          Edit
+      <div>
+        <Link
+          to={`/admins/${admin.id}/edit`}
+          className="ui button inverted primary"
+        >
+          <i className="edit icon" /> Editar
         </Link>
-        <Link to={`/admins/${admin.id}/delete`} className="ui button negative">
-          Delete
+        <Link
+          to={`/admins/${admin.id}/delete`}
+          className="ui button inverted red"
+        >
+          <i className="eraser icon" />
+          Deletar
         </Link>
       </div>
     );
   }
 
-  renderList() {
+  renderTable() {
     return this.props.admins.map(admin => {
       return (
-        <div className="item" key={admin.id}>
-          {this.renderActions(admin)}
-          <i className="large middle aligned icon user" />
-          <div className="content">
-            <div className="header">{admin.name}</div>
-            <div className="description">{admin.email}</div>
-          </div>
-        </div>
+        <tr key={admin.id}>
+          <td>{admin.name}</td>
+          <td>{admin.email}</td>
+          <td>{admin.active ? "Sim" : "Não"}</td>
+          <td className="right aligned">{this.renderActions(admin)}</td>
+        </tr>
       );
     });
   }
@@ -39,13 +44,33 @@ class AdminList extends Component {
   render() {
     return (
       <div>
-        <h2>Admins</h2>
-        <div className="ui celled list">{this.renderList()}</div>
-        <div style={{ textAlign: "right" }}>
-          <Link to="/admins/new" className="ui button primary">
-            Add Admin
-          </Link>
-        </div>
+        <h2 className="ui header">
+          <i className="address book outline icon" />
+          <div className="content">
+            Admins
+            <div className="sub header">Gerenciamento dos Administradores</div>
+          </div>
+        </h2>
+        <table className="ui black striped table">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Email</th>
+              <th>Ativo</th>
+              <th />
+            </tr>
+          </thead>
+          <tbody>{this.renderTable()}</tbody>
+          <tfoot className="full-width">
+            <tr>
+              <th colSpan="4">
+                <Link to="/admins/new" className="ui right floated blue button">
+                  <i className="plus icon" /> Novo
+                </Link>
+              </th>
+            </tr>
+          </tfoot>
+        </table>
       </div>
     );
   }

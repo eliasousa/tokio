@@ -11,7 +11,13 @@ class AdminCreate extends Component {
   render() {
     return (
       <div>
-        <h3>Novo Admin</h3>
+        <h2 className="ui header">
+          <i className="address book outline icon" />
+          <div className="content">
+            Novo Admin
+            <div className="sub header">Gerenciamento dos Administradores</div>
+          </div>
+        </h2>
         <AdminForm
           initialValues={{ active: "true" }}
           onSubmit={this.onSubmit}

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
+import { Link } from "react-router-dom";
 
 const required = value =>
   value || typeof value === "number" ? undefined : "campo obrigatório";
@@ -81,11 +82,14 @@ class AdminForm extends Component {
             </Field>
           </div>
         </div>
+        <Link to="/admins" className="ui right floated button">
+          <i className="redo icon" /> Voltar
+        </Link>
         <button
-          className="ui button primary"
+          className="ui right floated button green"
           disabled={this.props.pristine || this.props.submitting}
         >
-          Salvar
+          <i className="save icon" /> Salvar
         </button>
       </form>
     );

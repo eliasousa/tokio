@@ -5,11 +5,13 @@ import { connect } from "react-redux";
 import { authenticate } from "../../actions/auth";
 
 class Login extends Component {
-  renderInput = ({ input, label, type }) => {
+  renderInput = ({ input, label, type, icon }) => {
     return (
       <div className="field">
-        <label>{label}</label>
-        <input {...input} autoComplete="off" placeholder={label} type={type} />
+        <div className="ui left icon input">
+          <i className={`${icon} icon`} />
+          <input {...input} placeholder={label} type={type} />
+        </div>
       </div>
     );
   };
@@ -20,30 +22,44 @@ class Login extends Component {
 
   render() {
     return (
-      <form
-        className="ui form error"
-        onSubmit={this.props.handleSubmit(this.onSubmit)}
-      >
-        <Field
-          name="email"
-          component={this.renderInput}
-          label="E-mail"
-          type="text"
-        />
+      <div className="ui three column grid" style={{ marginTop: "7em" }}>
+        <div className="column" />
+        <div className="column">
+          <h2 className="ui center aligned icon header">
+            <i className="address card icon" />
+            Faça login no GoVoucher
+          </h2>
+          <form
+            className="ui form large"
+            onSubmit={this.props.handleSubmit(this.onSubmit)}
+          >
+            <div className="ui stacked segment">
+              <Field
+                name="email"
+                component={this.renderInput}
+                label="E-mail"
+                type="text"
+                icon="user"
+              />
 
-        <Field
-          name="password"
-          component={this.renderInput}
-          label="Senha"
-          type="password"
-        />
-        <button
-          className="ui button primary"
-          disabled={this.props.pristine || this.props.submitting}
-        >
-          Entrar
-        </button>
-      </form>
+              <Field
+                name="password"
+                component={this.renderInput}
+                label="Senha"
+                type="password"
+                icon="lock"
+              />
+              <button
+                className="ui fluid large submit button green"
+                disabled={this.props.pristine || this.props.submitting}
+              >
+                Entrar
+              </button>
+            </div>
+          </form>
+        </div>
+        <div className="column" />
+      </div>
     );
   }
 }
