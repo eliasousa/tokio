@@ -1,25 +1,21 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import ReactFlashMessage from "react-flash-message";
+import { getLatestMessage } from "redux-flash";
 
 class FlashMessage extends Component {
   render() {
-    const { message, className } = this.props.flashMessage;
+    if (!this.props.flash) return null;
 
-    if (!message) {
-      return null;
-    }
+    const { message, isError } = this.props.flash;
 
     return (
-      <ReactFlashMessage duration={5000}>
-        <div className={`ui ${className} message`}>{message}</div>
-      </ReactFlashMessage>
+      <div className={`ui ${isError ? "red" : "green"} message`}>{message}</div>
     );
   }
 }
 
-const mapStateToProps = ({ flashMessage }) => {
-  return { flashMessage };
+const mapStateToProps = state => {
+  return { flash: getLatestMessage(state) };
 };
 
 export default connect(mapStateToProps)(FlashMessage);

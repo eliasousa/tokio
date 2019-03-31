@@ -1,8 +1,8 @@
 import { stopSubmit } from "redux-form";
+import { flashSuccessMessage } from "redux-flash";
 
 import berlim from "../services/berlim";
 import history from "../history";
-import { sendFlashMessage } from "./flashMessage";
 import {
   CREATE_ADMIN,
   FETCH_ADMIN,
@@ -25,7 +25,7 @@ export const createAdmin = formValues => async dispatch => {
 
     dispatch({ type: CREATE_ADMIN, payload: response.data.data });
     history.push("/admins");
-    dispatch(sendFlashMessage("Admin criado com sucesso!", "green"));
+    dispatch(flashSuccessMessage("Admin criado com sucesso!"));
   } catch (error) {
     dispatch(_showServerErrors(error));
   }
@@ -48,7 +48,7 @@ export const editAdmin = (id, formValues) => async dispatch => {
 
     dispatch({ type: EDIT_ADMIN, payload: response.data.data });
     history.push("/admins");
-    dispatch(sendFlashMessage("Admin editado com sucesso!", "green"));
+    dispatch(flashSuccessMessage("Admin editado com sucesso!"));
   } catch (error) {
     dispatch(_showServerErrors(error));
   }
@@ -59,5 +59,5 @@ export const deleteAdmin = id => async dispatch => {
 
   dispatch({ type: DELETE_ADMIN, payload: id });
   history.push("/admins");
-  dispatch(sendFlashMessage("Admin removido com sucesso!", "green"));
+  dispatch(flashSuccessMessage("Admin removido com sucesso!"));
 };
