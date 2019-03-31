@@ -1,4 +1,4 @@
-import { FLASH_MESSAGE } from "./types";
+import { FLASH_MESSAGE } from "../constants/types";
 
 export const sendFlashMessage = (message, className) => {
   return {

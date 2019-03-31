@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
-import { login } from "../../actions/auth";
 import { connect } from "react-redux";
+
+import { authenticate } from "../../actions/auth";
 
 class Login extends Component {
   renderInput = ({ input, label, type }) => {
@@ -14,7 +15,7 @@ class Login extends Component {
   };
 
   onSubmit = formValues => {
-    this.props.login(formValues);
+    this.props.authenticate(formValues);
   };
 
   render() {
@@ -40,7 +41,7 @@ class Login extends Component {
           className="ui button primary"
           disabled={this.props.pristine || this.props.submitting}
         >
-          Login
+          Entrar
         </button>
       </form>
     );
@@ -49,7 +50,7 @@ class Login extends Component {
 
 export default connect(
   null,
-  { login }
+  { authenticate }
 )(
   reduxForm({
     form: "login"

@@ -1,8 +1,5 @@
 import decode from "jwt-decode";
-
-const TOKEN_KEY = "@berlim-token";
-const USER_TYPE_KEY = "@berlim-user-type";
-const USER_ID_KEY = "@berlim-user-id";
+import { TOKEN_KEY, USER_TYPE_KEY, USER_ID_KEY } from "../constants/jwt";
 
 export const getToken = () => localStorage.getItem(TOKEN_KEY);
 export const isAdmin = () => localStorage.getItem(USER_TYPE_KEY) === "Admin";

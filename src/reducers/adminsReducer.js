@@ -6,7 +6,7 @@ import {
   FETCH_ADMINS,
   EDIT_ADMIN,
   DELETE_ADMIN
-} from "../actions/types";
+} from "../constants/types";
 
 export default (state = {}, action) => {
   switch (action.type) {

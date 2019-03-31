@@ -1,4 +1,4 @@
-import { FLASH_MESSAGE } from "../actions/types";
+import { FLASH_MESSAGE } from "../constants/types";
 
 const initialState = {
   message: null,

@@ -1,9 +1,9 @@
-import berlim from "../apis/berlim";
+import berlim from "../services/berlim";
 import history from "../history";
-import { loginUser } from "../apis/auth";
+import { loginUser } from "../services/auth";
 import { sendFlashMessage } from "./flashMessage";
 
-export const login = formValues => async dispatch => {
+export const authenticate = formValues => async dispatch => {
   try {
     const response = await berlim.post("/sessions", formValues);
     loginUser(response.data.token);

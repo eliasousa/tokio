@@ -1,7 +1,7 @@
-import berlim from "../apis/berlim";
-import history from "../history";
 import { stopSubmit } from "redux-form";
 
+import berlim from "../services/berlim";
+import history from "../history";
 import { sendFlashMessage } from "./flashMessage";
 import {
   CREATE_ADMIN,
@@ -9,7 +9,7 @@ import {
   FETCH_ADMINS,
   EDIT_ADMIN,
   DELETE_ADMIN
-} from "./types";
+} from "../constants/types";
 
 const _showServerErrors = errors => {
   const formErrors = {};
