@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchAdmin, editAdmin } from "../../actions";
+import { fetchAdmin, editAdmin } from "../../actions/admins";
 import AdminForm from "./AdminForm";
 
 class AdminEdit extends Component {

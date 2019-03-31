@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { fetchAdmins } from "../../actions";
+import { fetchAdmins } from "../../actions/admins";
 
 class AdminList extends Component {
   componentDidMount() {

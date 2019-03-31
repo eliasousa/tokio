@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Modal from "../Modal";
 import history from "../../history";
-import { fetchAdmin, deleteAdmin } from "../../actions";
+import { fetchAdmin, deleteAdmin } from "../../actions/admins";
 
 class AdminDelete extends React.Component {
   componentDidMount() {

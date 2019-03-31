@@ -1,5 +1,5 @@
 import decode from "jwt-decode";
-import { TOKEN_KEY, USER_TYPE_KEY, USER_ID_KEY } from "../constants/jwt";
+import { TOKEN_KEY, USER_TYPE_KEY, USER_ID_KEY } from "../constants/auth";
 
 export const getToken = () => localStorage.getItem(TOKEN_KEY);
 export const isAdmin = () => localStorage.getItem(USER_TYPE_KEY) === "Admin";
