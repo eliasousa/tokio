@@ -24,7 +24,7 @@ export const logoutUser = () => {
 const isTokenExpired = token => {
   try {
     const { exp } = decode(token);
-    if (exp < Date.now() / 1000) {
+    return exp < Date.now() / 1000
       return true;
     } else return false;
   } catch (err) {
