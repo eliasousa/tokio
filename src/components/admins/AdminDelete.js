@@ -15,15 +15,18 @@ class AdminDelete extends React.Component {
 
     return (
       <React.Fragment>
-        <button
-          onClick={() => this.props.deleteAdmin(id)}
-          className="ui button negative"
-        >
-          <i className="eraser icon" /> Deletar
-        </button>
-        <Link to="/admins" className="ui button">
-          <i className="redo icon" /> Cancelar
-        </Link>
+        <div className="ui buttons">
+          <button
+            onClick={() => this.props.deleteAdmin(id)}
+            className="ui button negative"
+          >
+            <i className="eraser icon" /> Deletar
+          </button>
+          <div className="or" data-text="ou" />
+          <Link to="/admins" className="ui button">
+            <i className="redo icon" /> Cancelar
+          </Link>
+        </div>
       </React.Fragment>
     );
   }

@@ -51,7 +51,7 @@ class AdminList extends Component {
             <div className="sub header">Gerenciamento dos Administradores</div>
           </div>
         </h2>
-        <table className="ui black striped table">
+        <table className="ui black striped unstackable table">
           <thead>
             <tr>
               <th>Nome</th>

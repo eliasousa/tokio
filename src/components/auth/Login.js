@@ -22,12 +22,11 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="ui three column grid" style={{ marginTop: "7em" }}>
-        <div className="column" />
-        <div className="column">
+      <div className="ui column centered grid" style={{ marginTop: "7em" }}>
+        <div className="sixteen wide mobile column six wide computer column">
           <h2 className="ui center aligned icon header">
             <i className="address card icon" />
-            Faça login no GoVoucher
+            Faça login para continuar
           </h2>
           <form
             className="ui form large"
@@ -58,7 +57,6 @@ class Login extends Component {
             </div>
           </form>
         </div>
-        <div className="column" />
       </div>
     );
   }
