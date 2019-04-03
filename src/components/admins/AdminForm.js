@@ -2,12 +2,7 @@ import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import { Link } from "react-router-dom";
 
-const required = value =>
-  value || typeof value === "number" ? undefined : "campo obrigatório";
-const email = value =>
-  value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
-    ? "e-mail invalido"
-    : undefined;
+import { required, email } from "../formValidations";
 
 class AdminForm extends Component {
   renderInput = ({

@@ -1,6 +1,8 @@
 import axios from "axios";
+import { flashErrorMessage } from "redux-flash";
 
-import { getToken } from "./auth";
+import history from "../history";
+import { getToken, logoutUser } from "./auth";
 
 const berlim = axios.create({
   baseURL: process.env.REACT_APP_API_URL
@@ -13,5 +15,28 @@ berlim.interceptors.request.use(async config => {
   }
   return config;
 });
+
+export const setupResponseInterceptors = store => {
+  berlim.interceptors.response.use(
+    response => {
+      return response;
+    },
+    error => {
+      if (!error.response) {
+        // Network error
+        store.dispatch(flashErrorMessage("Falha de conexão com o servidor"));
+      } else {
+        if (error.response.status === 401) {
+          logoutUser();
+        }
+        if (error.response.status === 403) {
+          history.push("/");
+        }
+      }
+
+      return Promise.reject(error);
+    }
+  );
+};
 
 export default berlim;
