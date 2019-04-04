@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import { Link } from "react-router-dom";
 
-import { required, email } from "../formValidations";
-import { phoneMask } from "../formMasks";
+import { required, email, number } from "../formValidations";
+import { phoneMask, cpfMask } from "../formMasks";
 
-class AdminForm extends Component {
+class TaxiForm extends Component {
   renderInput = ({
     input,
     label,
@@ -35,30 +35,41 @@ class AdminForm extends Component {
         className="ui form error"
         onSubmit={this.props.handleSubmit(this.onSubmit)}
       >
-        <Field
-          name="name"
-          component={this.renderInput}
-          label="Nome"
-          type="text"
-          fieldWidth="sixteen"
-          validate={required}
-        />
         <div className="fields">
+          <Field
+            name="smtt"
+            component={this.renderInput}
+            label="SMTT"
+            type="number"
+            fieldWidth="four"
+            validate={[required, number]}
+          />
           <Field
             name="email"
             component={this.renderInput}
             label="E-mail"
             type="email"
-            fieldWidth="ten"
+            fieldWidth="twelve"
             validate={[required, email]}
           />
-
+        </div>
+        <div className="fields">
+          <Field
+            name="cpf"
+            component={this.renderInput}
+            label="CPF"
+            type="text"
+            fieldWidth="ten"
+            validate={[required]}
+            {...cpfMask}
+          />
           <Field
             name="phone"
             component={this.renderInput}
             label="Telefone"
             type="tel"
             fieldWidth="six"
+            validate={[required]}
             {...phoneMask}
           />
         </div>
@@ -87,7 +98,7 @@ class AdminForm extends Component {
             <i className="save icon" /> Salvar
           </button>
           <div className="or" data-text="ou" />
-          <Link to="/admins" className="ui button">
+          <Link to="/taxis" className="ui button">
             <i className="redo icon" /> Voltar
           </Link>
         </div>
@@ -97,5 +108,5 @@ class AdminForm extends Component {
 }
 
 export default reduxForm({
-  form: "adminForm"
-})(AdminForm);
+  form: "taxiForm"
+})(TaxiForm);

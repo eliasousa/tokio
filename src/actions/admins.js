@@ -3,6 +3,7 @@ import { flashSuccessMessage } from "redux-flash";
 
 import berlim from "../services/berlim";
 import history from "../history";
+import { formatToFormErrors } from "./utils";
 import {
   CREATE_ADMIN,
   FETCH_ADMIN,
@@ -10,14 +11,6 @@ import {
   EDIT_ADMIN,
   DELETE_ADMIN
 } from "../constants/types";
-
-const _showServerErrors = errors => {
-  const formErrors = {};
-  Object.entries(errors.response.data.errors).forEach(error => {
-    formErrors[error[0]] = error[1].join(", ");
-  });
-  return stopSubmit("adminForm", formErrors);
-};
 
 export const createAdmin = formValues => async dispatch => {
   try {
@@ -27,7 +20,7 @@ export const createAdmin = formValues => async dispatch => {
     history.push("/admins");
     dispatch(flashSuccessMessage("Admin criado com sucesso!"));
   } catch (error) {
-    dispatch(_showServerErrors(error));
+    dispatch(stopSubmit("adminForm", formatToFormErrors(error)));
   }
 };
 
@@ -50,7 +43,7 @@ export const editAdmin = (id, formValues) => async dispatch => {
     history.push("/admins");
     dispatch(flashSuccessMessage("Admin editado com sucesso!"));
   } catch (error) {
-    dispatch(_showServerErrors(error));
+    dispatch(stopSubmit("adminForm", formatToFormErrors(error)));
   }
 };
 

@@ -19,11 +19,18 @@ class Header extends Component {
           {isAuthenticated && (
             <div className="right menu">
               {isAdmin && (
-                <div className="right menu">
-                  <Link to="/admins" className="item">
-                    <i className="address book outline icon" /> Admins
-                  </Link>
-                </div>
+                <>
+                  <div className="right menu">
+                    <Link to="/admins" className="item">
+                      <i className="address book outline icon" /> Admins
+                    </Link>
+                  </div>
+                  <div className="right menu">
+                    <Link to="/taxis" className="item">
+                      <i className="taxi icon" /> Taxis
+                    </Link>
+                  </div>
+                </>
               )}
               <Link to="/login" onClick={logoutUser} className="item">
                 <i className="sign-out icon" /> Sair

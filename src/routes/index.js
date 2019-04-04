@@ -3,10 +3,16 @@ import { Router, Route, Switch } from "react-router-dom";
 import history from "../history";
 
 import Login from "../components/auth/Login";
+
 import AdminList from "../components/admins/AdminList";
 import AdminCreate from "../components/admins/AdminCreate";
 import AdminEdit from "../components/admins/AdminEdit";
 import AdminDelete from "../components/admins/AdminDelete";
+
+import TaxiList from "../components/taxis/TaxiList";
+import TaxiCreate from "../components/taxis/TaxiCreate";
+import TaxiEdit from "../components/taxis/TaxiEdit";
+
 import Header from "../components/Header";
 import FlashMessage from "../components/FlashMessage";
 
@@ -25,6 +31,10 @@ const Routes = () => (
         <AdminRoute exact path="/admins/new" component={AdminCreate} />
         <AdminRoute exact path="/admins/:id/edit" component={AdminEdit} />
         <AdminRoute exact path="/admins/:id/delete" component={AdminDelete} />
+
+        <AdminRoute exact path="/taxis" component={TaxiList} />
+        <AdminRoute exact path="/taxis/new" component={TaxiCreate} />
+        <AdminRoute exact path="/taxis/:id/edit" component={TaxiEdit} />
 
         <Route exact path="/login" component={Login} />
         <Route path="*" component={() => <h1>Page not found</h1>} />
