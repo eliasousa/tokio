@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
-import { Link } from "react-router-dom";
 
 import { required, email, number } from "../formValidations";
 import { phoneMask, cpfMask } from "../formMasks";
+import SaveOrBackButton from "../layout/SaveOrBackButton";
 
 class TaxiForm extends Component {
   renderInput = ({
@@ -90,18 +90,11 @@ class TaxiForm extends Component {
             </Field>
           </div>
         </div>
-        <div className="ui right floated buttons" style={{ marginTop: "10px" }}>
-          <button
-            className="ui button green"
-            disabled={this.props.pristine || this.props.submitting}
-          >
-            <i className="save icon" /> Salvar
-          </button>
-          <div className="or" data-text="ou" />
-          <Link to="/taxis" className="ui button">
-            <i className="redo icon" /> Voltar
-          </Link>
-        </div>
+        <SaveOrBackButton
+          backPath="/taxis"
+          pristine={this.props.pristine}
+          submitting={this.props.submitting}
+        />
       </form>
     );
   }

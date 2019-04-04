@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import _ from "lodash";
 
 import { fetchTaxis } from "../../actions/taxis";
+import SectionHeader from "../layout/SectionHeader";
 
 class TaxiList extends Component {
   componentDidMount() {
@@ -39,13 +40,11 @@ class TaxiList extends Component {
   render() {
     return (
       <div>
-        <h2 className="ui header">
-          <i className="taxi icon" />
-          <div className="content">
-            Taxis
-            <div className="sub header">Gerenciamento dos Taxis</div>
-          </div>
-        </h2>
+        <SectionHeader
+          title="Taxis"
+          subtitle="Gerenciamento dos Taxis"
+          icon="taxi"
+        />
         <table className="ui black striped unstackable table">
           <thead>
             <tr>

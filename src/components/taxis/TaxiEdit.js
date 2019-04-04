@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+
 import { fetchTaxi, editTaxi } from "../../actions/taxis";
 import TaxiForm from "./TaxiForm";
+import SectionHeader from "../layout/SectionHeader";
 
 class TaxiEdit extends Component {
   componentDidMount() {
@@ -15,13 +17,11 @@ class TaxiEdit extends Component {
   render() {
     return (
       <div>
-        <h2 className="ui header">
-          <i className="taxi icon" />
-          <div className="content">
-            Editar Taxi
-            <div className="sub header">Gerenciamento dos Taxis</div>
-          </div>
-        </h2>
+        <SectionHeader
+          title="Editar Taxi"
+          subtitle="Gerenciamento dos Taxis"
+          icon="taxi"
+        />
         <TaxiForm initialValues={this.props.taxi} onSubmit={this.onSubmit} />
       </div>
     );

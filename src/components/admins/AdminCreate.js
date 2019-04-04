@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+
 import { createAdmin } from "../../actions/admins";
 import AdminForm from "./AdminForm";
+import SectionHeader from "../layout/SectionHeader";
 
 class AdminCreate extends Component {
   onSubmit = formValues => {
@@ -11,13 +13,11 @@ class AdminCreate extends Component {
   render() {
     return (
       <div>
-        <h2 className="ui header">
-          <i className="address book outline icon" />
-          <div className="content">
-            Novo Admin
-            <div className="sub header">Gerenciamento dos Administradores</div>
-          </div>
-        </h2>
+        <SectionHeader
+          title="Novo Admin"
+          subtitle="Gerenciamento dos Administradores"
+          icon="address book outline"
+        />
         <AdminForm
           initialValues={{ active: "true" }}
           onSubmit={this.onSubmit}

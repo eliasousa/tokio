@@ -26,11 +26,14 @@ export const setupResponseInterceptors = store => {
         // Network error
         store.dispatch(flashErrorMessage("Falha de conexão com o servidor"));
       } else {
-        if (error.response.status === 401) {
-          logoutUser();
-        }
-        if (error.response.status === 403) {
-          history.push("/");
+        switch (error.response.status) {
+          case 401:
+            logoutUser();
+            break;
+          case 403:
+            history.push("/");
+            break;
+          default:
         }
       }
 

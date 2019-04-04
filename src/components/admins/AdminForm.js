@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
-import { Link } from "react-router-dom";
 
 import { required, email } from "../formValidations";
 import { phoneMask } from "../formMasks";
+import SaveOrBackButton from "../layout/SaveOrBackButton";
 
 class AdminForm extends Component {
   renderInput = ({
@@ -79,18 +79,11 @@ class AdminForm extends Component {
             </Field>
           </div>
         </div>
-        <div className="ui right floated buttons" style={{ marginTop: "10px" }}>
-          <button
-            className="ui button green"
-            disabled={this.props.pristine || this.props.submitting}
-          >
-            <i className="save icon" /> Salvar
-          </button>
-          <div className="or" data-text="ou" />
-          <Link to="/admins" className="ui button">
-            <i className="redo icon" /> Voltar
-          </Link>
-        </div>
+        <SaveOrBackButton
+          backPath="/admins"
+          pristine={this.props.pristine}
+          submitting={this.props.submitting}
+        />
       </form>
     );
   }

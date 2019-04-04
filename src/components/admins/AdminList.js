@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+
 import { fetchAdmins } from "../../actions/admins";
+import SectionHeader from "../layout/SectionHeader";
 
 class AdminList extends Component {
   componentDidMount() {
@@ -44,13 +46,11 @@ class AdminList extends Component {
   render() {
     return (
       <div>
-        <h2 className="ui header">
-          <i className="address book outline icon" />
-          <div className="content">
-            Admins
-            <div className="sub header">Gerenciamento dos Administradores</div>
-          </div>
-        </h2>
+        <SectionHeader
+          title="Admins"
+          subtitle="Gerenciamento dos Administradores"
+          icon="address book outline"
+        />
         <table className="ui black striped unstackable table">
           <thead>
             <tr>
