@@ -2,42 +2,35 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { fetchAdmins } from "../../actions/admins";
+import { fetchTaxis } from "../../actions/taxis";
 import SectionHeader from "../layout/SectionHeader";
 
-class AdminList extends Component {
+class TaxiList extends Component {
   componentDidMount() {
-    this.props.fetchAdmins();
+    this.props.fetchTaxis();
   }
 
-  renderActions(admin) {
+  renderActions(taxi) {
     return (
       <div>
         <Link
-          to={`/admins/${admin.id}/edit`}
+          to={`/taxis/${taxi.id}/edit`}
           className="ui button inverted primary"
         >
           <i className="edit icon" /> Editar
-        </Link>
-        <Link
-          to={`/admins/${admin.id}/delete`}
-          className="ui button inverted red"
-        >
-          <i className="eraser icon" />
-          Deletar
         </Link>
       </div>
     );
   }
 
   renderTable() {
-    return this.props.admins.map(admin => {
+    return this.props.taxis.map(taxi => {
       return (
-        <tr key={admin.id}>
-          <td>{admin.name}</td>
-          <td>{admin.email}</td>
-          <td>{admin.active ? "Sim" : "Não"}</td>
-          <td className="right aligned">{this.renderActions(admin)}</td>
+        <tr key={taxi.id}>
+          <td>{taxi.smtt}</td>
+          <td>{taxi.email}</td>
+          <td>{taxi.active ? "Sim" : "Não"}</td>
+          <td className="right aligned">{this.renderActions(taxi)}</td>
         </tr>
       );
     });
@@ -47,14 +40,14 @@ class AdminList extends Component {
     return (
       <div>
         <SectionHeader
-          title="Admins"
-          subtitle="Gerenciamento dos Administradores"
-          icon="address book outline"
+          title="Taxis"
+          subtitle="Gerenciamento dos Taxis"
+          icon="taxi"
         />
         <table className="ui black striped unstackable table">
           <thead>
             <tr>
-              <th>Nome</th>
+              <th>SMTT</th>
               <th>Email</th>
               <th>Ativo</th>
               <th />
@@ -64,7 +57,7 @@ class AdminList extends Component {
           <tfoot className="full-width">
             <tr>
               <th colSpan="4">
-                <Link to="/admins/new" className="ui right floated blue button">
+                <Link to="/taxis/new" className="ui right floated blue button">
                   <i className="plus icon" /> Novo
                 </Link>
               </th>
@@ -78,11 +71,11 @@ class AdminList extends Component {
 
 const mapStateToProps = state => {
   return {
-    admins: Object.values(state.admins)
+    taxis: Object.values(state.taxis)
   };
 };
 
 export default connect(
   mapStateToProps,
-  { fetchAdmins }
-)(AdminList);
+  { fetchTaxis }
+)(TaxiList);

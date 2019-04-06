@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 
-import { required, email } from "../formValidations";
-import { phoneMask } from "../formMasks";
+import { required, email, number } from "../formValidations";
+import { phoneMask, cpfMask } from "../formMasks";
 import FormActions from "../layout/FormActions";
 
-class AdminForm extends Component {
+class TaxiForm extends Component {
   renderInput = ({
     input,
     label,
@@ -35,30 +35,41 @@ class AdminForm extends Component {
         className="ui form error"
         onSubmit={this.props.handleSubmit(this.onSubmit)}
       >
-        <Field
-          name="name"
-          component={this.renderInput}
-          label="Nome"
-          type="text"
-          fieldWidth="sixteen"
-          validate={required}
-        />
         <div className="fields">
+          <Field
+            name="smtt"
+            component={this.renderInput}
+            label="SMTT"
+            type="number"
+            fieldWidth="four"
+            validate={[required, number]}
+          />
           <Field
             name="email"
             component={this.renderInput}
             label="E-mail"
             type="email"
-            fieldWidth="ten"
+            fieldWidth="twelve"
             validate={[required, email]}
           />
-
+        </div>
+        <div className="fields">
+          <Field
+            name="cpf"
+            component={this.renderInput}
+            label="CPF"
+            type="text"
+            fieldWidth="ten"
+            validate={[required]}
+            {...cpfMask}
+          />
           <Field
             name="phone"
             component={this.renderInput}
             label="Telefone"
             type="tel"
             fieldWidth="six"
+            validate={[required]}
             {...phoneMask}
           />
         </div>
@@ -80,7 +91,7 @@ class AdminForm extends Component {
           </div>
         </div>
         <FormActions
-          backPath="/admins"
+          backPath="/taxis"
           pristine={this.props.pristine}
           submitting={this.props.submitting}
         />
@@ -90,5 +101,5 @@ class AdminForm extends Component {
 }
 
 export default reduxForm({
-  form: "adminForm"
-})(AdminForm);
+  form: "taxiForm"
+})(TaxiForm);

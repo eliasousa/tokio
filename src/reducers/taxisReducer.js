@@ -1,25 +1,22 @@
 import _ from "lodash";
 
 import {
-  CREATE_ADMIN,
-  FETCH_ADMIN,
-  FETCH_ADMINS,
-  UPDATE_ADMIN,
-  DELETE_ADMIN
+  CREATE_TAXI,
+  FETCH_TAXI,
+  FETCH_TAXIS,
+  UPDATE_TAXI
 } from "../constants/types";
 
 export default (state = {}, action) => {
   switch (action.type) {
-    case FETCH_ADMINS:
+    case FETCH_TAXIS:
       return { ...state, ..._.mapKeys(action.payload, "id") };
-    case FETCH_ADMIN:
+    case FETCH_TAXI:
       return { ...state, [action.payload.id]: action.payload };
-    case CREATE_ADMIN:
+    case CREATE_TAXI:
       return { ...state, [action.payload.id]: action.payload };
-    case UPDATE_ADMIN:
+    case UPDATE_TAXI:
       return { ...state, [action.payload.id]: action.payload };
-    case DELETE_ADMIN:
-      return _.omit(state, action.payload);
     default:
       return state;
   }

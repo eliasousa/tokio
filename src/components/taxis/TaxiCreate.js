@@ -1,24 +1,24 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { createAdmin } from "../../actions/admins";
-import AdminForm from "./AdminForm";
+import { createTaxi } from "../../actions/taxis";
+import TaxiForm from "./TaxiForm";
 import SectionHeader from "../layout/SectionHeader";
 
-class AdminCreate extends Component {
+class TaxiCreate extends Component {
   onSubmit = formValues => {
-    this.props.createAdmin(formValues);
+    this.props.createTaxi(formValues);
   };
 
   render() {
     return (
       <div>
         <SectionHeader
-          title="Novo Admin"
-          subtitle="Gerenciamento dos Administradores"
-          icon="address book outline"
+          title="Novo Taxi"
+          subtitle="Gerenciamento dos Taxis"
+          icon="taxi"
         />
-        <AdminForm
+        <TaxiForm
           initialValues={{ active: "true" }}
           onSubmit={this.onSubmit}
           validatePassword={true}
@@ -30,5 +30,5 @@ class AdminCreate extends Component {
 
 export default connect(
   null,
-  { createAdmin }
-)(AdminCreate);
+  { createTaxi }
+)(TaxiCreate);
