@@ -4,7 +4,7 @@ import {
   CREATE_TAXI,
   FETCH_TAXI,
   FETCH_TAXIS,
-  EDIT_TAXI
+  UPDATE_TAXI
 } from "../constants/types";
 
 export default (state = {}, action) => {
@@ -15,7 +15,7 @@ export default (state = {}, action) => {
       return { ...state, [action.payload.id]: action.payload };
     case CREATE_TAXI:
       return { ...state, [action.payload.id]: action.payload };
-    case EDIT_TAXI:
+    case UPDATE_TAXI:
       return { ...state, [action.payload.id]: action.payload };
     default:
       return state;

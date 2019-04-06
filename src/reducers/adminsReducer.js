@@ -4,7 +4,7 @@ import {
   CREATE_ADMIN,
   FETCH_ADMIN,
   FETCH_ADMINS,
-  EDIT_ADMIN,
+  UPDATE_ADMIN,
   DELETE_ADMIN
 } from "../constants/types";
 
@@ -16,7 +16,7 @@ export default (state = {}, action) => {
       return { ...state, [action.payload.id]: action.payload };
     case CREATE_ADMIN:
       return { ...state, [action.payload.id]: action.payload };
-    case EDIT_ADMIN:
+    case UPDATE_ADMIN:
       return { ...state, [action.payload.id]: action.payload };
     case DELETE_ADMIN:
       return _.omit(state, action.payload);

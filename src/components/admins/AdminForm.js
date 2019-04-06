@@ -3,7 +3,7 @@ import { Field, reduxForm } from "redux-form";
 
 import { required, email } from "../formValidations";
 import { phoneMask } from "../formMasks";
-import SaveOrBackButton from "../layout/SaveOrBackButton";
+import FormActions from "../layout/FormActions";
 
 class AdminForm extends Component {
   renderInput = ({
@@ -79,7 +79,7 @@ class AdminForm extends Component {
             </Field>
           </div>
         </div>
-        <SaveOrBackButton
+        <FormActions
           backPath="/admins"
           pristine={this.props.pristine}
           submitting={this.props.submitting}

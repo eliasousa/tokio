@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { fetchAdmin, editAdmin } from "../../actions/admins";
+import { fetchAdmin, updateAdmin } from "../../actions/admins";
 import AdminForm from "./AdminForm";
 import SectionHeader from "../layout/SectionHeader";
 
@@ -11,7 +11,7 @@ class AdminEdit extends Component {
   }
 
   onSubmit = formValues => {
-    this.props.editAdmin(this.props.match.params.id, formValues);
+    this.props.updateAdmin(this.props.match.params.id, formValues);
   };
 
   render() {
@@ -34,5 +34,5 @@ const mapStateToProps = (state, ownProps) => {
 
 export default connect(
   mapStateToProps,
-  { fetchAdmin, editAdmin }
+  { fetchAdmin, updateAdmin }
 )(AdminEdit);

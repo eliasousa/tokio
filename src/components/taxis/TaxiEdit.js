@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { fetchTaxi, editTaxi } from "../../actions/taxis";
+import { fetchTaxi, updateTaxi } from "../../actions/taxis";
 import TaxiForm from "./TaxiForm";
 import SectionHeader from "../layout/SectionHeader";
 
@@ -11,7 +11,7 @@ class TaxiEdit extends Component {
   }
 
   onSubmit = formValues => {
-    this.props.editTaxi(this.props.match.params.id, formValues);
+    this.props.updateTaxi(this.props.match.params.id, formValues);
   };
 
   render() {
@@ -34,5 +34,5 @@ const mapStateToProps = (state, ownProps) => {
 
 export default connect(
   mapStateToProps,
-  { fetchTaxi, editTaxi }
+  { fetchTaxi, updateTaxi }
 )(TaxiEdit);

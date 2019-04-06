@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import _ from "lodash";
 
 import { fetchTaxis } from "../../actions/taxis";
 import SectionHeader from "../layout/SectionHeader";
@@ -25,7 +24,7 @@ class TaxiList extends Component {
   }
 
   renderTable() {
-    return _.sortBy(this.props.taxis, ["smtt"]).map(taxi => {
+    return this.props.taxis.map(taxi => {
       return (
         <tr key={taxi.id}>
           <td>{taxi.smtt}</td>

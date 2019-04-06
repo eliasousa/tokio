@@ -3,7 +3,7 @@ import { Field, reduxForm } from "redux-form";
 
 import { required, email, number } from "../formValidations";
 import { phoneMask, cpfMask } from "../formMasks";
-import SaveOrBackButton from "../layout/SaveOrBackButton";
+import FormActions from "../layout/FormActions";
 
 class TaxiForm extends Component {
   renderInput = ({
@@ -90,7 +90,7 @@ class TaxiForm extends Component {
             </Field>
           </div>
         </div>
-        <SaveOrBackButton
+        <FormActions
           backPath="/taxis"
           pristine={this.props.pristine}
           submitting={this.props.submitting}

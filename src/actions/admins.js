@@ -8,7 +8,7 @@ import {
   CREATE_ADMIN,
   FETCH_ADMIN,
   FETCH_ADMINS,
-  EDIT_ADMIN,
+  UPDATE_ADMIN,
   DELETE_ADMIN
 } from "../constants/types";
 
@@ -35,11 +35,11 @@ export const fetchAdmin = id => async dispatch => {
   dispatch({ type: FETCH_ADMIN, payload: response.data.data });
 };
 
-export const editAdmin = (id, formValues) => async dispatch => {
+export const updateAdmin = (id, formValues) => async dispatch => {
   try {
     const response = await berlim.patch(`/admins/${id}`, { admin: formValues });
 
-    dispatch({ type: EDIT_ADMIN, payload: response.data.data });
+    dispatch({ type: UPDATE_ADMIN, payload: response.data.data });
     history.push("/admins");
     dispatch(flashSuccessMessage("Admin editado com sucesso!"));
   } catch (error) {

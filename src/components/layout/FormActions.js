@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const SaveOrBackButton = ({ backPath, pristine, submitting }) => {
+const FormActions = ({ backPath, pristine, submitting }) => {
   return (
     <div className="ui right floated buttons" style={{ marginTop: "10px" }}>
       <button className="ui button green" disabled={pristine || submitting}>
@@ -15,4 +15,4 @@ const SaveOrBackButton = ({ backPath, pristine, submitting }) => {
   );
 };
 
-export default SaveOrBackButton;
+export default FormActions;

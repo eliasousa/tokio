@@ -8,7 +8,7 @@ import {
   CREATE_TAXI,
   FETCH_TAXI,
   FETCH_TAXIS,
-  EDIT_TAXI
+  UPDATE_TAXI
 } from "../constants/types";
 
 export const createTaxi = formValues => async dispatch => {
@@ -34,11 +34,11 @@ export const fetchTaxi = id => async dispatch => {
   dispatch({ type: FETCH_TAXI, payload: response.data.data });
 };
 
-export const editTaxi = (id, formValues) => async dispatch => {
+export const updateTaxi = (id, formValues) => async dispatch => {
   try {
     const response = await berlim.patch(`/taxis/${id}`, { taxi: formValues });
 
-    dispatch({ type: EDIT_TAXI, payload: response.data.data });
+    dispatch({ type: UPDATE_TAXI, payload: response.data.data });
     history.push("/taxis");
     dispatch(flashSuccessMessage("Taxi editado com sucesso!"));
   } catch (error) {
