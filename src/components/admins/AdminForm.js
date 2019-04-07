@@ -4,27 +4,9 @@ import { Field, reduxForm } from "redux-form";
 import { required, email } from "../formValidations";
 import { phoneMask } from "../formMasks";
 import FormActions from "../layout/FormActions";
+import { renderInput } from "../formHelpers";
 
 class AdminForm extends Component {
-  renderInput = ({
-    input,
-    label,
-    type,
-    fieldWidth,
-    meta: { touched, error }
-  }) => {
-    return (
-      <div
-        className={`${fieldWidth} wide field ${touched && (error && "error")}`}
-      >
-        <label>{label}</label>
-        <input {...input} autoComplete="off" placeholder={label} type={type} />
-        {touched &&
-          (error && <span style={{ color: "#9f3a38" }}>{error}</span>)}
-      </div>
-    );
-  };
-
   onSubmit = formValues => {
     this.props.onSubmit(formValues);
   };
@@ -37,7 +19,7 @@ class AdminForm extends Component {
       >
         <Field
           name="name"
-          component={this.renderInput}
+          component={renderInput}
           label="Nome"
           type="text"
           fieldWidth="sixteen"
@@ -46,7 +28,7 @@ class AdminForm extends Component {
         <div className="fields">
           <Field
             name="email"
-            component={this.renderInput}
+            component={renderInput}
             label="E-mail"
             type="email"
             fieldWidth="ten"
@@ -55,7 +37,7 @@ class AdminForm extends Component {
 
           <Field
             name="phone"
-            component={this.renderInput}
+            component={renderInput}
             label="Telefone"
             type="tel"
             fieldWidth="six"
@@ -65,7 +47,7 @@ class AdminForm extends Component {
         <div className="fields">
           <Field
             name="encrypted_password"
-            component={this.renderInput}
+            component={renderInput}
             label="Senha"
             type="text"
             fieldWidth="ten"
