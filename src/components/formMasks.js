@@ -7,3 +7,7 @@ export const phoneMask = createTextMask({
 export const cpfMask = createTextMask({
   pattern: "999.999.999-99"
 });
+
+export const cnpjMask = createTextMask({
+  pattern: "99.999.999.9999/99"
+});

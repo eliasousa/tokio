@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 
-import { required, email, number } from "../formValidations";
-import { phoneMask, cpfMask } from "../formMasks";
+import { required, email } from "../formValidations";
+import { phoneMask, cnpjMask } from "../formMasks";
 import FormActions from "../layout/FormActions";
 
-class TaxiForm extends Component {
+class CompanyForm extends Component {
   renderInput = ({
     input,
     label,
@@ -37,31 +37,31 @@ class TaxiForm extends Component {
       >
         <div className="fields">
           <Field
-            name="smtt"
+            name="name"
             component={this.renderInput}
-            label="SMTT"
-            type="number"
-            fieldWidth="four"
-            validate={[required, number]}
+            label="Nome"
+            type="text"
+            fieldWidth="ten"
+            validate={[required]}
           />
+          <Field
+            name="cnpj"
+            component={this.renderInput}
+            label="CNPJ"
+            type="text"
+            fieldWidth="six"
+            validate={[required]}
+            {...cnpjMask}
+          />
+        </div>
+        <div className="fields">
           <Field
             name="email"
             component={this.renderInput}
             label="E-mail"
             type="email"
-            fieldWidth="twelve"
-            validate={[required, email]}
-          />
-        </div>
-        <div className="fields">
-          <Field
-            name="cpf"
-            component={this.renderInput}
-            label="CPF"
-            type="text"
             fieldWidth="ten"
-            validate={[required]}
-            {...cpfMask}
+            validate={[required, email]}
           />
           <Field
             name="phone"
@@ -90,7 +90,7 @@ class TaxiForm extends Component {
           </div>
         </div>
         <FormActions
-          backPath="/taxis"
+          backPath="/companies"
           pristine={this.props.pristine}
           submitting={this.props.submitting}
         />
@@ -100,5 +100,5 @@ class TaxiForm extends Component {
 }
 
 export default reduxForm({
-  form: "taxiForm"
-})(TaxiForm);
+  form: "companyForm"
+})(CompanyForm);
