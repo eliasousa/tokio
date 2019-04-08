@@ -13,6 +13,10 @@ import TaxiList from "../components/taxis/TaxiList";
 import TaxiCreate from "../components/taxis/TaxiCreate";
 import TaxiEdit from "../components/taxis/TaxiEdit";
 
+import CompanyList from "../components/companies/CompanyList";
+import CompanyCreate from "../components/companies/CompanyCreate";
+import CompanyEdit from "../components/companies/CompanyEdit";
+
 import Header from "../components/Header";
 import FlashMessage from "../components/FlashMessage";
 
@@ -35,6 +39,10 @@ const Routes = () => (
         <AdminRoute exact path="/taxis" component={TaxiList} />
         <AdminRoute exact path="/taxis/new" component={TaxiCreate} />
         <AdminRoute exact path="/taxis/:id/edit" component={TaxiEdit} />
+
+        <AdminRoute exact path="/companies" component={CompanyList} />
+        <AdminRoute exact path="/companies/new" component={CompanyCreate} />
+        <AdminRoute exact path="/companies/:id/edit" component={CompanyEdit} />
 
         <Route exact path="/login" component={Login} />
         <Route path="*" component={() => <h1>Page not found</h1>} />

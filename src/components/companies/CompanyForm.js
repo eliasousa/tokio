@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 
 import { required, email } from "../formValidations";
-import { phoneMask } from "../formMasks";
-import FormActions from "../layout/FormActions";
+import { phoneMask, cnpjMask } from "../formMasks";
 import { renderInput } from "../formHelpers";
+import FormActions from "../layout/FormActions";
 
-class AdminForm extends Component {
+class CompanyForm extends Component {
   onSubmit = formValues => {
     this.props.onSubmit(formValues);
   };
@@ -17,14 +17,25 @@ class AdminForm extends Component {
         className="ui form error"
         onSubmit={this.props.handleSubmit(this.onSubmit)}
       >
-        <Field
-          name="name"
-          component={renderInput}
-          label="Nome"
-          type="text"
-          fieldWidth="sixteen"
-          validate={required}
-        />
+        <div className="fields">
+          <Field
+            name="name"
+            component={renderInput}
+            label="Nome"
+            type="text"
+            fieldWidth="ten"
+            validate={[required]}
+          />
+          <Field
+            name="cnpj"
+            component={renderInput}
+            label="CNPJ"
+            type="text"
+            fieldWidth="six"
+            validate={[required]}
+            {...cnpjMask}
+          />
+        </div>
         <div className="fields">
           <Field
             name="email"
@@ -34,7 +45,6 @@ class AdminForm extends Component {
             fieldWidth="ten"
             validate={[required, email]}
           />
-
           <Field
             name="phone"
             component={renderInput}
@@ -62,7 +72,7 @@ class AdminForm extends Component {
           </div>
         </div>
         <FormActions
-          backPath="/admins"
+          backPath="/companies"
           pristine={this.props.pristine}
           submitting={this.props.submitting}
         />
@@ -72,5 +82,5 @@ class AdminForm extends Component {
 }
 
 export default reduxForm({
-  form: "adminForm"
-})(AdminForm);
+  form: "companyForm"
+})(CompanyForm);

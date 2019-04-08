@@ -3,28 +3,10 @@ import { Field, reduxForm } from "redux-form";
 
 import { required, email, number } from "../formValidations";
 import { phoneMask, cpfMask } from "../formMasks";
+import { renderInput } from "../formHelpers";
 import FormActions from "../layout/FormActions";
 
 class TaxiForm extends Component {
-  renderInput = ({
-    input,
-    label,
-    type,
-    fieldWidth,
-    meta: { touched, error }
-  }) => {
-    return (
-      <div
-        className={`${fieldWidth} wide field ${touched && (error && "error")}`}
-      >
-        <label>{label}</label>
-        <input {...input} autoComplete="off" placeholder={label} type={type} />
-        {touched &&
-          (error && <span style={{ color: "#9f3a38" }}>{error}</span>)}
-      </div>
-    );
-  };
-
   onSubmit = formValues => {
     this.props.onSubmit(formValues);
   };
@@ -38,7 +20,7 @@ class TaxiForm extends Component {
         <div className="fields">
           <Field
             name="smtt"
-            component={this.renderInput}
+            component={renderInput}
             label="SMTT"
             type="number"
             fieldWidth="four"
@@ -46,7 +28,7 @@ class TaxiForm extends Component {
           />
           <Field
             name="email"
-            component={this.renderInput}
+            component={renderInput}
             label="E-mail"
             type="email"
             fieldWidth="twelve"
@@ -56,7 +38,7 @@ class TaxiForm extends Component {
         <div className="fields">
           <Field
             name="cpf"
-            component={this.renderInput}
+            component={renderInput}
             label="CPF"
             type="text"
             fieldWidth="ten"
@@ -65,18 +47,17 @@ class TaxiForm extends Component {
           />
           <Field
             name="phone"
-            component={this.renderInput}
+            component={renderInput}
             label="Telefone"
             type="tel"
             fieldWidth="six"
-            validate={[required]}
             {...phoneMask}
           />
         </div>
         <div className="fields">
           <Field
             name="encrypted_password"
-            component={this.renderInput}
+            component={renderInput}
             label="Senha"
             type="text"
             fieldWidth="ten"

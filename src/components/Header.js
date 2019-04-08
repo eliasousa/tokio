@@ -30,6 +30,11 @@ class Header extends Component {
                       <i className="taxi icon" /> Taxis
                     </Link>
                   </div>
+                  <div className="right menu">
+                    <Link to="/companies" className="item">
+                      <i className="building outline icon" /> Empresas
+                    </Link>
+                  </div>
                 </>
               )}
               <Link to="/login" onClick={logoutUser} className="item">

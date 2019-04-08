@@ -8,3 +8,8 @@ export const CREATE_TAXI = "CREATE_TAXI";
 export const FETCH_TAXIS = "FETCH_TAXIS";
 export const FETCH_TAXI = "FETCH_TAXI";
 export const UPDATE_TAXI = "UPDATE_TAXI";
+
+export const CREATE_COMPANY = "CREATE_COMPANY";
+export const FETCH_COMPANIES = "FETCH_COMPANIES";
+export const FETCH_COMPANY = "FETCH_COMPANY";
+export const UPDATE_COMPANY = "UPDATE_COMPANY";
