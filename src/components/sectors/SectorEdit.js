@@ -1,22 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { getCurrentId } from "../../services/auth";
 import { fetchSector, updateSector } from "../../actions/sectors";
 import SectorForm from "./SectorForm";
 import SectionHeader from "../layout/SectionHeader";
 
 class SectorEdit extends Component {
   componentDidMount() {
-    this.props.fetchSector(this.props.companyId, this.props.match.params.id);
+    this.props.fetchSector(this.props.match.params.id);
   }
 
   onSubmit = formValues => {
-    this.props.updateSector(
-      this.props.companyId,
-      this.props.match.params.id,
-      formValues
-    );
+    this.props.updateSector(this.props.match.params.id, formValues);
   };
 
   render() {
@@ -38,12 +33,11 @@ class SectorEdit extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    sector: state.sectors[ownProps.match.params.id],
-    companyId: getCurrentId()
+    sector: state.sectors[ownProps.match.params.id]
   };
 };
 
 export default connect(
   mapStateToProps,
-  { fetchSector, updateSector, getCurrentId }
+  { fetchSector, updateSector }
 )(SectorEdit);

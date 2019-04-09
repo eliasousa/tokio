@@ -3,10 +3,6 @@ import decode from "jwt-decode";
 const TOKEN_KEY = "@berlim-token";
 
 export const getToken = () => localStorage.getItem(TOKEN_KEY);
-export const getCurrentId = () => {
-  const { sub } = decode(getToken());
-  return sub;
-};
 
 export const isAdmin = () => isUserType("Admin");
 export const isCompany = () => isUserType("Company");

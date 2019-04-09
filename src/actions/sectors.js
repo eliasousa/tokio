@@ -11,9 +11,9 @@ import {
   UPDATE_SECTOR
 } from "../constants/types";
 
-export const createSector = (companyId, formValues) => async dispatch => {
+export const createSector = formValues => async dispatch => {
   try {
-    const response = await berlim.post(`/companies/${companyId}/sectors`, {
+    const response = await berlim.post("/sectors", {
       sector: formValues
     });
 
@@ -25,25 +25,22 @@ export const createSector = (companyId, formValues) => async dispatch => {
   }
 };
 
-export const fetchSectors = companyId => async dispatch => {
-  const response = await berlim.get(`/companies/${companyId}/sectors`);
+export const fetchSectors = () => async dispatch => {
+  const response = await berlim.get("/sectors");
   dispatch({ type: FETCH_SECTORS, payload: response.data.data });
 };
 
-export const fetchSector = (companyId, id) => async dispatch => {
-  const response = await berlim.get(`/companies/${companyId}/sectors/${id}`);
+export const fetchSector = id => async dispatch => {
+  const response = await berlim.get(`/sectors/${id}`);
 
   dispatch({ type: FETCH_SECTOR, payload: response.data.data });
 };
 
-export const updateSector = (companyId, id, formValues) => async dispatch => {
+export const updateSector = (id, formValues) => async dispatch => {
   try {
-    const response = await berlim.patch(
-      `/companies/${companyId}/sectors/${id}`,
-      {
-        sector: formValues
-      }
-    );
+    const response = await berlim.patch(`/sectors/${id}`, {
+      sector: formValues
+    });
 
     dispatch({ type: UPDATE_SECTOR, payload: response.data.data });
     history.push("/sectors");

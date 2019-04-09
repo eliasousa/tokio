@@ -1,4 +1,4 @@
-export const CLEAR_STORE = "CLEAR_STORE";
+export const RESET = "RESET";
 
 export const CREATE_ADMIN = "CREATE_ADMIN";
 export const FETCH_ADMINS = "FETCH_ADMINS";

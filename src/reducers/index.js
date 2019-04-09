@@ -7,9 +7,7 @@ import taxisReducer from "./taxisReducer";
 import companiesReducer from "./companiesReducer";
 import sectorsReducer from "./sectorsReducer";
 
-import { CLEAR_STORE } from "../constants/types";
-
-const appReducer = combineReducers({
+export default combineReducers({
   form: formReducer,
   flash: flashReducer,
   admins: adminsReducer,
@@ -17,11 +15,3 @@ const appReducer = combineReducers({
   companies: companiesReducer,
   sectors: sectorsReducer
 });
-
-export default (state, action) => {
-  if (action.type === CLEAR_STORE) {
-    state = undefined;
-  }
-
-  return appReducer(state, action);
-};
