@@ -17,11 +17,16 @@ import CompanyList from "../components/companies/CompanyList";
 import CompanyCreate from "../components/companies/CompanyCreate";
 import CompanyEdit from "../components/companies/CompanyEdit";
 
+import SectorList from "../components/sectors/SectorList";
+import SectorCreate from "../components/sectors/SectorCreate";
+import SectorEdit from "../components/sectors/SectorEdit";
+
 import Header from "../components/Header";
 import FlashMessage from "../components/FlashMessage";
 
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
+import CompanyRoute from "./CompanyRoute";
 
 const Routes = () => (
   <Router history={history}>
@@ -43,6 +48,10 @@ const Routes = () => (
         <AdminRoute exact path="/companies" component={CompanyList} />
         <AdminRoute exact path="/companies/new" component={CompanyCreate} />
         <AdminRoute exact path="/companies/:id/edit" component={CompanyEdit} />
+
+        <CompanyRoute exact path="/sectors" component={SectorList} />
+        <CompanyRoute exact path="/sectors/new" component={SectorCreate} />
+        <CompanyRoute exact path="/sectors/:id/edit" component={SectorEdit} />
 
         <Route exact path="/login" component={Login} />
         <Route path="*" component={() => <h1>Page not found</h1>} />
