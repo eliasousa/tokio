@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 
 import { isAuthenticated, isCompany } from "../services/auth";
+import Layout from "../components/layout/Layout";
 
 const CompanyRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -9,7 +10,9 @@ const CompanyRoute = ({ component: Component, ...rest }) => (
     render={props =>
       isAuthenticated() ? (
         isCompany() ? (
-          <Component {...props} />
+          <Layout isAuthenticated isCompany>
+            <Component {...props} />
+          </Layout>
         ) : (
           <Redirect to={{ pathname: "/", state: { from: props.location } }} />
         )

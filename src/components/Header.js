@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { isAuthenticated, isAdmin, isCompany } from "../services/auth";
 import { logout } from "../actions/auth";
 
 class Header extends Component {
@@ -56,15 +55,7 @@ class Header extends Component {
   }
 }
 
-const mapStateToProps = () => {
-  return {
-    isAuthenticated: isAuthenticated(),
-    isAdmin: isAdmin(),
-    isCompany: isCompany()
-  };
-};
-
 export default connect(
-  mapStateToProps,
+  null,
   { logout }
 )(Header);
