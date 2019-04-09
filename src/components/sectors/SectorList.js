@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
+import { getCurrentId } from "../../services/auth";
 import { fetchSectors } from "../../actions/sectors";
 import SectionHeader from "../layout/SectionHeader";
 
 class SectorList extends Component {
   componentDidMount() {
-    this.props.fetchSectors();
+    this.props.fetchSectors(this.props.companyId);
   }
 
   renderActions(sector) {
@@ -70,11 +71,12 @@ class SectorList extends Component {
 
 const mapStateToProps = state => {
   return {
-    sectors: Object.values(state.sectors)
+    sectors: Object.values(state.sectors),
+    companyId: getCurrentId()
   };
 };
 
 export default connect(
   mapStateToProps,
-  { fetchSectors }
+  { fetchSectors, getCurrentId }
 )(SectorList);

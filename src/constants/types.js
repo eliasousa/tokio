@@ -1,3 +1,5 @@
+export const CLEAR_STORE = "CLEAR_STORE";
+
 export const CREATE_ADMIN = "CREATE_ADMIN";
 export const FETCH_ADMINS = "FETCH_ADMINS";
 export const FETCH_ADMIN = "FETCH_ADMIN";

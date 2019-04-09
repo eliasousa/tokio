@@ -4,7 +4,6 @@ import { flashSuccessMessage } from "redux-flash";
 import berlim from "../services/berlim";
 import history from "../history";
 import { formatToFormErrors } from "./utils";
-import { getCurrentId } from "../services/auth";
 import {
   CREATE_SECTOR,
   FETCH_SECTOR,
@@ -12,9 +11,7 @@ import {
   UPDATE_SECTOR
 } from "../constants/types";
 
-const companyId = getCurrentId();
-
-export const createSector = formValues => async dispatch => {
+export const createSector = (companyId, formValues) => async dispatch => {
   try {
     const response = await berlim.post(`/companies/${companyId}/sectors`, {
       sector: formValues
@@ -28,18 +25,18 @@ export const createSector = formValues => async dispatch => {
   }
 };
 
-export const fetchSectors = () => async dispatch => {
+export const fetchSectors = companyId => async dispatch => {
   const response = await berlim.get(`/companies/${companyId}/sectors`);
   dispatch({ type: FETCH_SECTORS, payload: response.data.data });
 };
 
-export const fetchSector = id => async dispatch => {
+export const fetchSector = (companyId, id) => async dispatch => {
   const response = await berlim.get(`/companies/${companyId}/sectors/${id}`);
 
   dispatch({ type: FETCH_SECTOR, payload: response.data.data });
 };
 
-export const updateSector = (id, formValues) => async dispatch => {
+export const updateSector = (companyId, id, formValues) => async dispatch => {
   try {
     const response = await berlim.patch(
       `/companies/${companyId}/sectors/${id}`,
