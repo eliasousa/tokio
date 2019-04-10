@@ -17,4 +17,10 @@ const Layout = ({ children, isAuthenticated, isAdmin, isCompany }) => (
   </div>
 );
 
+Layout.defaultProps = {
+  isAuthenticated: false,
+  isAdmin: false,
+  isCompany: false
+};
+
 export default Layout;
