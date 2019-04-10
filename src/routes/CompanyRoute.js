@@ -1,25 +1,17 @@
 import React from "react";
-import { Route, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
-import { isAuthenticated, isCompany } from "../services/auth";
-import Layout from "../components/layout/Layout";
+import { isCompany } from "../services/auth";
+import PrivateRoute from "./PrivateRoute";
 
 const CompanyRoute = ({ component: Component, ...rest }) => (
-  <Route
+  <PrivateRoute
     {...rest}
-    render={props =>
-      isAuthenticated() ? (
-        isCompany() ? (
-          <Layout isAuthenticated isCompany>
-            <Component {...props} />
-          </Layout>
-        ) : (
-          <Redirect to={{ pathname: "/", state: { from: props.location } }} />
-        )
+    component={props =>
+      isCompany() ? (
+        <Component {...props} />
       ) : (
-        <Redirect
-          to={{ pathname: "/login", state: { from: props.location } }}
-        />
+        <Redirect to={{ pathname: "/", state: { from: props.location } }} />
       )
     }
   />

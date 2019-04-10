@@ -33,6 +33,9 @@ export const setupResponseInterceptors = store => {
           case 403:
             history.push("/");
             break;
+          case 404:
+            history.push("/not_found");
+            break;
           default:
         }
       }

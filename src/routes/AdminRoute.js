@@ -1,25 +1,17 @@
 import React from "react";
-import { Route, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
-import { isAuthenticated, isAdmin } from "../services/auth";
-import Layout from "../components/layout/Layout";
+import { isAdmin } from "../services/auth";
+import PrivateRoute from "./PrivateRoute";
 
 const AdminRoute = ({ component: Component, ...rest }) => (
-  <Route
+  <PrivateRoute
     {...rest}
-    render={props =>
-      isAuthenticated() ? (
-        isAdmin() ? (
-          <Layout isAuthenticated isAdmin>
-            <Component {...props} />
-          </Layout>
-        ) : (
-          <Redirect to={{ pathname: "/", state: { from: props.location } }} />
-        )
+    component={props =>
+      isAdmin() ? (
+        <Component {...props} />
       ) : (
-        <Redirect
-          to={{ pathname: "/login", state: { from: props.location } }}
-        />
+        <Redirect to={{ pathname: "/", state: { from: props.location } }} />
       )
     }
   />
