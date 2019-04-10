@@ -1,14 +1,14 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 
-import { isAdmin } from "../services/auth";
+import { isCompany } from "../services/auth";
 import PrivateRoute from "./PrivateRoute";
 
-const AdminRoute = ({ component: Component, ...rest }) => (
+const CompanyRoute = ({ component: Component, ...rest }) => (
   <PrivateRoute
     {...rest}
     component={props =>
-      isAdmin() ? (
+      isCompany() ? (
         <Component {...props} />
       ) : (
         <Redirect to={{ pathname: "/", state: { from: props.location } }} />
@@ -17,4 +17,4 @@ const AdminRoute = ({ component: Component, ...rest }) => (
   />
 );
 
-export default AdminRoute;
+export default CompanyRoute;

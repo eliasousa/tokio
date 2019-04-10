@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { isAuthenticated, logoutUser, isAdmin } from "../services/auth";
+import { logout } from "../actions/auth";
 
 class Header extends Component {
   render() {
-    const { isAuthenticated, isAdmin } = this.props;
+    const { isAuthenticated, isAdmin, isCompany, logout } = this.props;
 
     return (
       <div className="ui fixed inverted menu">
@@ -37,7 +37,14 @@ class Header extends Component {
                   </div>
                 </>
               )}
-              <Link to="/login" onClick={logoutUser} className="item">
+              {isCompany && (
+                <div className="right menu">
+                  <Link to="/sectors" className="item">
+                    <i className="sitemap icon" /> Setores
+                  </Link>
+                </div>
+              )}
+              <Link to="/login" onClick={logout} className="item">
                 <i className="sign-out icon" /> Sair
               </Link>
             </div>
@@ -48,8 +55,7 @@ class Header extends Component {
   }
 }
 
-const mapStateToProps = () => {
-  return { isAuthenticated: isAuthenticated(), isAdmin: isAdmin() };
-};
-
-export default connect(mapStateToProps)(Header);
+export default connect(
+  null,
+  { logout }
+)(Header);

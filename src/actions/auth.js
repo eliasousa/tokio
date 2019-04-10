@@ -3,7 +3,8 @@ import { flashErrorMessage } from "redux-flash";
 
 import berlim from "../services/berlim";
 import history from "../history";
-import { loginUser } from "../services/auth";
+import { loginUser, logoutUser } from "../services/auth";
+import { RESET } from "../constants/types";
 
 export const authenticate = formValues => async dispatch => {
   if (!_.every(["email", "password"], _.partial(_.has, formValues))) {
@@ -19,4 +20,9 @@ export const authenticate = formValues => async dispatch => {
       dispatch(flashErrorMessage("Usuário ou senha invalido!"));
     }
   }
+};
+
+export const logout = () => async dispatch => {
+  logoutUser();
+  dispatch({ type: RESET });
 };
