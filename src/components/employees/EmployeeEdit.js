@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
@@ -32,7 +33,13 @@ class EmployeeEdit extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return { employee: state.employees[ownProps.match.params.id] };
+  const e = state.employees[ownProps.match.params.id];
+
+  if (e && e.sector) {
+    return { employee: { ..._.omit(e, "sector"), sector_id: e.sector.id } };
+  }
+
+  return { employee: e };
 };
 
 export default connect(

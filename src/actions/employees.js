@@ -1,11 +1,9 @@
-import _ from "lodash";
 import { stopSubmit } from "redux-form";
 import { flashSuccessMessage } from "redux-flash";
 
 import berlim from "../services/berlim";
 import history from "../history";
 import { formatToFormErrors } from "./utils";
-import { fetchSector } from "../actions/sectors";
 import {
   CREATE_EMPLOYEE,
   FETCH_EMPLOYEE,
@@ -23,22 +21,11 @@ export const createEmployee = formValues => async dispatch => {
     history.push("/employees");
     dispatch(flashSuccessMessage("Funcionário criado com sucesso!"));
   } catch (error) {
-    dispatch(stopSubmit("sectorForm", formatToFormErrors(error)));
+    dispatch(stopSubmit("employeeForm", formatToFormErrors(error)));
   }
 };
 
-export const fetchEmployeesAndSectors = () => async (dispatch, getState) => {
-  await dispatch(fetchEmployees());
-
-  _.chain(getState().employees)
-    .map("sector_id")
-    .compact()
-    .uniq()
-    .forEach(id => dispatch(fetchSector(id)))
-    .value();
-};
-
-const fetchEmployees = () => async dispatch => {
+export const fetchEmployees = () => async dispatch => {
   const response = await berlim.get("/employees");
   dispatch({ type: FETCH_EMPLOYEES, payload: response.data.data });
 };

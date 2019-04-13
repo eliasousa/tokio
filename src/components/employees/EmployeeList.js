@@ -2,13 +2,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { fetchEmployeesAndSectors } from "../../actions/employees";
+import { fetchEmployees } from "../../actions/employees";
 import SectionHeader from "../layout/SectionHeader";
-import SectorName from "./SectorName";
 
 class EmployeeList extends Component {
   componentDidMount() {
-    this.props.fetchEmployeesAndSectors();
+    this.props.fetchEmployees();
   }
 
   renderActions(employee) {
@@ -31,7 +30,7 @@ class EmployeeList extends Component {
           <td>{employee.id}</td>
           <td>{employee.name}</td>
           <td>{employee.email}</td>
-          <td>{<SectorName sectorId={employee.sector_id} />}</td>
+          <td>{employee.sector && employee.sector.name}</td>
           <td>{employee.active ? "Sim" : "Não"}</td>
           <td className="right aligned">{this.renderActions(employee)}</td>
         </tr>
@@ -85,5 +84,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchEmployeesAndSectors }
+  { fetchEmployees }
 )(EmployeeList);

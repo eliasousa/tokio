@@ -18,7 +18,7 @@ class SectorsSelect extends Component {
       <>
         <label>Setor</label>
         <Field name="sector_id" className="ui dropdown" component="select">
-          <option value="null">Selecione</option>
+          <option value="">Selecione</option>
           {sectors.map(sector => {
             return (
               <option key={sector.id} value={sector.id}>
