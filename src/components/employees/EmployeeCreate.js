@@ -1,26 +1,27 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { createSector } from "../../actions/sectors";
-import SectorForm from "./SectorForm";
+import { createEmployee } from "../../actions/employees";
+import EmployeeForm from "./EmployeeForm";
 import SectionHeader from "../layout/SectionHeader";
 
-class SectorCreate extends Component {
+class EmployeeCreate extends Component {
   onSubmit = formValues => {
-    this.props.createSector(formValues);
+    this.props.createEmployee(formValues);
   };
 
   render() {
     return (
       <div>
         <SectionHeader
-          title="Novo Setor"
-          subtitle="Gerenciamento dos Setores"
-          icon="sitemap"
+          title="Novo Funcionário"
+          subtitle="Gerenciamento dos Funcionários"
+          icon="users"
         />
-        <SectorForm
+        <EmployeeForm
           initialValues={{ active: "true" }}
           onSubmit={this.onSubmit}
+          validatePassword={true}
         />
       </div>
     );
@@ -29,5 +30,5 @@ class SectorCreate extends Component {
 
 export default connect(
   null,
-  { createSector }
-)(SectorCreate);
+  { createEmployee }
+)(EmployeeCreate);

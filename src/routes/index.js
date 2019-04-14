@@ -21,6 +21,10 @@ import SectorList from "../components/sectors/SectorList";
 import SectorCreate from "../components/sectors/SectorCreate";
 import SectorEdit from "../components/sectors/SectorEdit";
 
+import EmployeeList from "../components/employees/EmployeeList";
+import EmployeeCreate from "../components/employees/EmployeeCreate";
+import EmployeeEdit from "../components/employees/EmployeeEdit";
+
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import CompanyRoute from "./CompanyRoute";
@@ -48,6 +52,10 @@ const Routes = () => (
       <CompanyRoute exact path="/sectors" component={SectorList} />
       <CompanyRoute exact path="/sectors/new" component={SectorCreate} />
       <CompanyRoute exact path="/sectors/:id/edit" component={SectorEdit} />
+
+      <CompanyRoute exact path="/employees" component={EmployeeList} />
+      <CompanyRoute exact path="/employees/new" component={EmployeeCreate} />
+      <CompanyRoute exact path="/employees/:id/edit" component={EmployeeEdit} />
 
       <Route
         exact

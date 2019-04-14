@@ -6,6 +6,7 @@ import adminsReducer from "./adminsReducer";
 import taxisReducer from "./taxisReducer";
 import companiesReducer from "./companiesReducer";
 import sectorsReducer from "./sectorsReducer";
+import employeesReducer from "./employeesReducer";
 
 export default combineReducers({
   form: formReducer,
@@ -13,5 +14,6 @@ export default combineReducers({
   admins: adminsReducer,
   taxis: taxisReducer,
   companies: companiesReducer,
-  sectors: sectorsReducer
+  sectors: sectorsReducer,
+  employees: employeesReducer
 });

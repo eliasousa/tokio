@@ -5,7 +5,7 @@ import { fetchCompany, updateCompany } from "../../actions/companies";
 import CompanyForm from "./CompanyForm";
 import SectionHeader from "../layout/SectionHeader";
 
-class TaxiEdit extends Component {
+class CompanyEdit extends Component {
   componentDidMount() {
     this.props.fetchCompany(this.props.match.params.id);
   }
@@ -38,4 +38,4 @@ const mapStateToProps = (state, ownProps) => {
 export default connect(
   mapStateToProps,
   { fetchCompany, updateCompany }
-)(TaxiEdit);
+)(CompanyEdit);

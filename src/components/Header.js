@@ -38,11 +38,18 @@ class Header extends Component {
                 </>
               )}
               {isCompany && (
-                <div className="right menu">
-                  <Link to="/sectors" className="item">
-                    <i className="sitemap icon" /> Setores
-                  </Link>
-                </div>
+                <>
+                  <div className="right menu">
+                    <Link to="/sectors" className="item">
+                      <i className="sitemap icon" /> Setores
+                    </Link>
+                  </div>
+                  <div className="right menu">
+                    <Link to="/employees" className="item">
+                      <i className="users icon" /> Funcionários
+                    </Link>
+                  </div>
+                </>
               )}
               <Link to="/login" onClick={logout} className="item">
                 <i className="sign-out icon" /> Sair
