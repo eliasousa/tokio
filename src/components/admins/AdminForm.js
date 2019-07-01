@@ -46,7 +46,7 @@ class AdminForm extends Component {
         </div>
         <div className="fields">
           <Field
-            name="encrypted_password"
+            name="password"
             component={renderInput}
             label="Senha"
             type="text"
