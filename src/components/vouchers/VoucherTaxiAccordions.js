@@ -35,7 +35,7 @@ export default class VoucherTaxiAccordions extends Component {
                   <Table.HeaderCell />
                   <Table.HeaderCell>#</Table.HeaderCell>
                   <Table.HeaderCell>Valor</Table.HeaderCell>
-                  <Table.HeaderCell>Data</Table.HeaderCell>
+                  <Table.HeaderCell>Data da corrida</Table.HeaderCell>
                   <Table.HeaderCell>Origem</Table.HeaderCell>
                   <Table.HeaderCell>Destino</Table.HeaderCell>
                   <Table.HeaderCell>Empresa</Table.HeaderCell>
@@ -63,7 +63,7 @@ export default class VoucherTaxiAccordions extends Component {
         </Accordion>
         <br />
         <Button color="green" floated="right" onClick={this.props.onSubmit}>
-          <Icon name="money bill alternate" /> Pagar
+          <Icon name="money" /> Pagar
         </Button>
       </>
     );
