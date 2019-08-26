@@ -1,18 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import _ from "lodash";
-import { Message } from "semantic-ui-react";
 
 import { fetchVouchers, payVouchers } from "../../actions/vouchers";
 import SectionHeader from "../layout/SectionHeader";
 import VoucherTaxiAccordions from "./VoucherTaxiAccordions";
-import { formatCurrency } from "../../actions/utils";
+import VouchersFilter from "./VouchersFilter";
 
 class VoucherPayment extends Component {
   state = { checkedIds: [] };
 
   componentDidMount() {
-    this.props.fetchVouchers();
+    this.props.fetchVouchers({ paid: false });
   }
 
   onChecked = e => {
@@ -29,20 +28,12 @@ class VoucherPayment extends Component {
     this.setState({ checkedIds: ids });
   };
 
-  onSubmit = e => {
+  onSubmit = () => {
     this.props.payVouchers(this.state.checkedIds);
   };
 
-  totalToPay = () => {
-    let total = _(this.props.vouchers)
-      .filter(v => {
-        return v.paid_at === null;
-      })
-      .sumBy(v => {
-        return v.value;
-      });
-
-    return formatCurrency(total);
+  onFilter = filterValues => {
+    this.props.fetchVouchers(filterValues);
   };
 
   render() {
@@ -55,15 +46,10 @@ class VoucherPayment extends Component {
       <div>
         <SectionHeader
           title="Pagamento"
-          subtitle="Gerenciamento de pagamento"
+          subtitle="Gerenciamento de pagamento de vouchers"
           icon="money"
         />
-        <Message
-          icon="dollar"
-          color="blue"
-          header="Total bruto a pagar:"
-          content={this.totalToPay()}
-        />
+        <VouchersFilter onSubmit={this.onFilter} />
         <VoucherTaxiAccordions
           taxis={taxis}
           onChecked={this.onChecked}

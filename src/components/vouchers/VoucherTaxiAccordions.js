@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
-
 import { Accordion, Icon, Table, Button } from "semantic-ui-react";
+
 import VouchersTable from "./VouchersTable";
 
 export default class VoucherTaxiAccordions extends Component {

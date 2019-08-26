@@ -4,8 +4,8 @@ import { flashSuccessMessage } from "redux-flash";
 import { formatCurrency } from "./utils";
 import history from "../history";
 
-export const fetchVouchers = () => async dispatch => {
-  const response = await berlim.get("/vouchers");
+export const fetchVouchers = filter => async dispatch => {
+  const response = await berlim.get("/vouchers", { params: filter });
 
   dispatch({ type: FETCH_VOUCHERS, payload: response.data.data });
 };

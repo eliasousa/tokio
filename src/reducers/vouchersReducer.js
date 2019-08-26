@@ -5,7 +5,7 @@ import { FETCH_VOUCHERS } from "../constants/types";
 export default (state = {}, action) => {
   switch (action.type) {
     case FETCH_VOUCHERS:
-      return { ...state, ..._.mapKeys(action.payload, "id") };
+      return { ...{}, ..._.mapKeys(action.payload, "id") };
     default:
       return state;
   }
