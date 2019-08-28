@@ -15,13 +15,12 @@ class VoucherPayment extends Component {
   }
 
   onChecked = e => {
-    const ids = this.state.checkedIds;
-    let index;
+    const { checkedIds: ids } = this.state;
 
     if (e.target.checked) {
       ids.push(+e.target.id);
     } else {
-      index = ids.indexOf(+e.target.id);
+      let index = ids.indexOf(+e.target.id);
       ids.splice(index, 1);
     }
 

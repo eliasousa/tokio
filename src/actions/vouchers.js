@@ -10,10 +10,8 @@ export const fetchVouchers = filter => async dispatch => {
   dispatch({ type: FETCH_VOUCHERS, payload: response.data.data });
 };
 
-export const payVouchers = ids => async dispatch => {
-  const response = await berlim.put("/vouchers", {
-    vouchers: ids
-  });
+export const payVouchers = vouchers => async dispatch => {
+  const response = await berlim.put("/vouchers", { vouchers });
 
   history.push("/vouchers/payment");
 
