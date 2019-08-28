@@ -9,7 +9,11 @@ const VouchersTable = ({ vouchers, onChecked }) => {
       <Table.Row key={voucher.id}>
         <Table.Cell collapsing>
           {voucher.paid_at === null && (
-            <Checkbox id={voucher.id} onChange={onChecked} />
+            <Checkbox
+              id={`voucher_${voucher.id}`}
+              value={voucher.id}
+              onChange={onChecked}
+            />
           )}
         </Table.Cell>
         <Table.Cell>{voucher.id}</Table.Cell>
