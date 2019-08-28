@@ -21,6 +21,12 @@ class Header extends Component {
               {isAdmin && (
                 <>
                   <div className="right menu">
+                    <Link to="/vouchers/payment" className="item">
+                      <i className="money bill alternate outline icon" />
+                      Pagamento
+                    </Link>
+                  </div>
+                  <div className="right menu">
                     <Link to="/admins" className="item">
                       <i className="address book outline icon" /> Admins
                     </Link>

@@ -25,6 +25,8 @@ import EmployeeList from "../components/employees/EmployeeList";
 import EmployeeCreate from "../components/employees/EmployeeCreate";
 import EmployeeEdit from "../components/employees/EmployeeEdit";
 
+import VoucherPayment from "../components/vouchers/VoucherPayment";
+
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import CompanyRoute from "./CompanyRoute";
@@ -48,6 +50,8 @@ const Routes = () => (
       <AdminRoute exact path="/companies" component={CompanyList} />
       <AdminRoute exact path="/companies/new" component={CompanyCreate} />
       <AdminRoute exact path="/companies/:id/edit" component={CompanyEdit} />
+
+      <AdminRoute exact path="/vouchers/payment" component={VoucherPayment} />
 
       <CompanyRoute exact path="/sectors" component={SectorList} />
       <CompanyRoute exact path="/sectors/new" component={SectorCreate} />
