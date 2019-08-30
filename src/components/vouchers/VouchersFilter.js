@@ -1,8 +1,11 @@
 import React, { Component } from "react";
-import { Field, reduxForm } from "redux-form";
+import { reduxForm } from "redux-form";
 
-import { renderDatePicker } from "../formHelpers";
-import TaxisSelect from "./TaxisSelect";
+import PaymentFilterFields from "./PaymentFilterFields";
+import { isAdmin, isTaxi, isCompany } from "../../services/auth";
+import AdminVoucherFilterFields from "./AdminVoucherFilterFIelds";
+import CompanyVoucherFilterFields from "./CompanyVoucherFilterFields";
+import TaxiVoucherFilterFields from "./TaxiVoucherFilterFields";
 
 class VouchersFilter extends Component {
   onSubmit = formValues => {
@@ -17,26 +20,20 @@ class VouchersFilter extends Component {
           className="ui form"
           onSubmit={this.props.handleSubmit(this.onSubmit)}
         >
-          <div className="fields">
-            <div className="four wide field">
-              <label>Situação</label>
-              <Field name="paid" className="ui dropdown" component="select">
-                <option value="false">Aberto</option>
-                <option value="true">Pago</option>
-              </Field>
-            </div>
-            <div className="four wide field">
-              <TaxisSelect />
-            </div>
-            <div className="four wide field">
-              <label>Data Inicio</label>
-              <Field name="created_start_at" component={renderDatePicker} />
-            </div>
-            <div className="four wide field">
-              <label>Data Fim</label>
-              <Field name="created_end_at" component={renderDatePicker} />
-            </div>
-          </div>
+          {isAdmin() ? (
+            this.props.payment ? (
+              <PaymentFilterFields />
+            ) : (
+              <AdminVoucherFilterFields />
+            )
+          ) : (
+            ""
+          )}
+
+          {isCompany() && <CompanyVoucherFilterFields />}
+
+          {isTaxi() && <TaxiVoucherFilterFields />}
+
           <div className="ui right floated">
             <button
               type="submit"

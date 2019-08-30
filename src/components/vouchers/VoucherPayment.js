@@ -48,7 +48,7 @@ class VoucherPayment extends Component {
           subtitle="Gerenciamento de pagamento de vouchers"
           icon="money"
         />
-        <VouchersFilter onSubmit={this.onFilter} />
+        <VouchersFilter onSubmit={this.onFilter} payment={true} />
         <VoucherTaxiAccordions
           taxis={taxis}
           onChecked={this.onChecked}

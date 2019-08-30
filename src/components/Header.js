@@ -20,8 +20,8 @@ class Header extends Component {
             <div className="right menu">
               <div className="right menu">
                 <Link to="/vouchers" className="item">
-                  <i className="address card icon" />
-                  Vouchers
+                  <i className="list icon" />
+                  Relatório
                 </Link>
               </div>
               {isAdmin && (

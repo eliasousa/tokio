@@ -36,9 +36,9 @@ class VoucherList extends Component {
     return (
       <div>
         <SectionHeader
-          title="Vouchers"
+          title="Relatório"
           subtitle="Lista de Vouchers"
-          icon="address card"
+          icon="list"
         />
         <VouchersFilter onSubmit={this.onFilter} />
         <table className="ui black striped unstackable table">
@@ -46,7 +46,7 @@ class VoucherList extends Component {
             <tr>
               <th>#</th>
               <th>Data</th>
-              <th>SMTT</th>
+              <th>Taxi</th>
               <th>Empresa</th>
               <th>Funcionário</th>
               <th>Origem</th>
