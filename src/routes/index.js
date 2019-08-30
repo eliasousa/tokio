@@ -26,6 +26,7 @@ import EmployeeCreate from "../components/employees/EmployeeCreate";
 import EmployeeEdit from "../components/employees/EmployeeEdit";
 
 import VoucherPayment from "../components/vouchers/VoucherPayment";
+import VoucherList from "../components/vouchers/VoucherList";
 
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
@@ -37,6 +38,7 @@ const Routes = () => (
   <Router history={history}>
     <Switch>
       <PrivateRoute exact path="/" component={() => <h1>Dashboard</h1>} />
+      <PrivateRoute exact path="/vouchers" component={VoucherList} />
 
       <AdminRoute exact path="/admins" component={AdminList} />
       <AdminRoute exact path="/admins/new" component={AdminCreate} />

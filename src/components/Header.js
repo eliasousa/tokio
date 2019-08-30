@@ -18,6 +18,12 @@ class Header extends Component {
 
           {isAuthenticated && (
             <div className="right menu">
+              <div className="right menu">
+                <Link to="/vouchers" className="item">
+                  <i className="address card icon" />
+                  Vouchers
+                </Link>
+              </div>
               {isAdmin && (
                 <>
                   <div className="right menu">
