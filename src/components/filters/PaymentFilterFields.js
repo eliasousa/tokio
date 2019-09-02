@@ -1,24 +1,20 @@
 import React, { Component } from "react";
 import { Field } from "redux-form";
 
-import TaxisSelect from "./TaxisSelect";
-import CompaniesSelect from "./CompaniesSelect";
-import { renderInput, renderDatePicker } from "../formHelpers";
+import TaxisSelect from "../vouchers/TaxisSelect";
+import { renderDatePicker } from "../formHelpers";
 
-export default class AdminVoucherFilterFields extends Component {
+export default class PaymentFilterFields extends Component {
   render() {
     return (
       <>
         <div className="fields">
-          <Field
-            name="voucher_id"
-            component={renderInput}
-            label="Voucher"
-            type="number"
-            fieldWidth="four"
-          />
           <div className="four wide field">
-            <CompaniesSelect />
+            <label>Situação</label>
+            <Field name="paid" className="ui dropdown" component="select">
+              <option value="false">Aberto</option>
+              <option value="true">Pago</option>
+            </Field>
           </div>
           <div className="four wide field">
             <TaxisSelect />

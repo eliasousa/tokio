@@ -5,7 +5,7 @@ import _ from "lodash";
 import { fetchVouchers, payVouchers } from "../../actions/vouchers";
 import SectionHeader from "../layout/SectionHeader";
 import VoucherTaxiAccordions from "./VoucherTaxiAccordions";
-import VouchersFilter from "./VouchersFilter";
+import VouchersFilter from "../filters/VouchersFilter";
 
 class VoucherPayment extends Component {
   state = { checkedIds: [] };

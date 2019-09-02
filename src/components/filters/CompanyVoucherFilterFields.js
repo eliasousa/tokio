@@ -3,7 +3,7 @@ import { Field } from "redux-form";
 
 import { renderDatePicker } from "../formHelpers";
 import SectorSelect from "../employees/SectorsSelect";
-import EmployeesSelect from "./EmployeesSelect";
+import EmployeesSelect from "../vouchers/EmployeesSelect";
 
 export default class CompanyVoucherFilterFields extends Component {
   render() {

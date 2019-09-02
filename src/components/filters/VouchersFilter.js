@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { reduxForm } from "redux-form";
 
-import PaymentFilterFields from "./PaymentFilterFields";
 import { isAdmin, isTaxi, isCompany } from "../../services/auth";
+import PaymentFilterFields from "./PaymentFilterFields";
 import AdminVoucherFilterFields from "./AdminVoucherFilterFIelds";
 import CompanyVoucherFilterFields from "./CompanyVoucherFilterFields";
 import TaxiVoucherFilterFields from "./TaxiVoucherFilterFields";

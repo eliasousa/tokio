@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import { fetchVouchers } from "../../actions/vouchers";
 import SectionHeader from "../layout/SectionHeader";
-import VouchersFilter from "./VouchersFilter";
+import VouchersFilter from "../filters/VouchersFilter";
 import { formatCurrency, formatDatetime } from "../../actions/utils";
 
 class VoucherList extends Component {
