@@ -26,9 +26,7 @@ class VouchersFilter extends Component {
             ) : (
               <AdminVoucherFilterFields />
             )
-          ) : (
-            ""
-          )}
+          ) : null}
 
           {isCompany() && <CompanyVoucherFilterFields />}
 
