@@ -27,6 +27,12 @@ const styles = StyleSheet.create({
     textAlign: "center",
     paddingBottom: 10
   },
+  filterHeader: {
+    marginBottom: 5
+  },
+  filterText: {
+    fontSize: 12
+  },
   table: {
     display: "table",
     width: "auto",
@@ -106,12 +112,50 @@ const renderTable = vouchers => {
   });
 };
 
-const Pdf = ({ vouchers }) => {
+const renderFilterHeader = filterParams => {
+  return (
+    <View style={styles.filterHeader}>
+      {filterParams.created_start_at && (
+        <Text style={styles.filterText}>
+          Data Inicio: {filterParams.created_start_at}
+        </Text>
+      )}
+      {filterParams.created_end_at && (
+        <Text style={styles.filterText}>
+          Data Fim: {filterParams.created_end_at}
+        </Text>
+      )}
+      {filterParams.taxi && (
+        <Text style={styles.filterText}>Taxi: {filterParams.taxi}</Text>
+      )}
+      {filterParams.company && (
+        <Text style={styles.filterText}>Empresa: {filterParams.company}</Text>
+      )}
+      {filterParams.employee && (
+        <Text style={styles.filterText}>
+          Funcionário: {filterParams.employee}
+        </Text>
+      )}
+    </View>
+  );
+};
+
+const renderTotalValue = vouchers => {
+  const totalValues = vouchers.reduce(
+    (totalValues, voucher) => totalValues + parseInt(voucher.value, 10),
+    0
+  );
+
+  return <Text>Valor Total: {formatCurrency(totalValues)}</Text>;
+};
+
+const Pdf = ({ vouchers, filterParams }) => {
   return (
     <Document>
       <Page style={styles.body} orientation="landscape">
         <Image style={styles.logoVoo} src="/logo_voo.png" />
         <Text style={styles.title}>Relatório de Vouchers</Text>
+        {renderFilterHeader(filterParams)}
         <View style={styles.table}>
           {/* TableHeader */}
           <View style={styles.tableRow}>
@@ -146,6 +190,7 @@ const Pdf = ({ vouchers }) => {
           {/* TableContent */}
           {renderTable(vouchers)}
         </View>
+        {renderTotalValue(vouchers)}
       </Page>
     </Document>
   );
@@ -155,6 +200,46 @@ export default class VouchersPdf extends Component {
   state = {
     ready: true
   };
+
+  setFilter() {
+    const firstVoucher = this.props.vouchers[0];
+
+    const {
+      taxi_id,
+      company_id,
+      employee_id,
+      created_start_at,
+      created_end_at
+    } = this.props.filterValues;
+
+    let newHash = {};
+
+    if (taxi_id !== undefined) {
+      newHash = { ...newHash, taxi: firstVoucher.taxi.smtt };
+    }
+
+    if (company_id !== undefined) {
+      newHash = { ...newHash, company: firstVoucher.company.name };
+    }
+
+    if (employee_id !== undefined) {
+      newHash = { ...newHash, employee: firstVoucher.employee.name };
+    }
+
+    if (employee_id !== undefined) {
+      newHash = { ...newHash, employee: firstVoucher.employee.name };
+    }
+
+    if (created_start_at !== undefined) {
+      newHash = { ...newHash, created_start_at: created_start_at };
+    }
+
+    if (created_end_at !== undefined) {
+      newHash = { ...newHash, created_end_at: created_end_at };
+    }
+
+    return newHash;
+  }
 
   componentDidMount() {
     this.setState({ ready: false });
@@ -168,7 +253,12 @@ export default class VouchersPdf extends Component {
       return (
         <>
           <PDFDownloadLink
-            document={<Pdf vouchers={this.props.vouchers} />}
+            document={
+              <Pdf
+                vouchers={this.props.vouchers}
+                filterParams={this.setFilter()}
+              />
+            }
             fileName="somename.pdf"
             className="ui basic button"
           >

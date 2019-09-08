@@ -5,14 +5,37 @@ import { fetchVouchers } from "../../actions/vouchers";
 import SectionHeader from "../layout/SectionHeader";
 import VouchersFilter from "../filters/VouchersFilter";
 import VouchersPdf from "./VouchersPdf";
-import { formatCurrency, formatDatetime } from "../../actions/utils";
+import {
+  formatCurrency,
+  formatDatetime,
+  formatDate
+} from "../../actions/utils";
 
 class VoucherList extends Component {
+  state = { filterValues: {} };
+
   componentDidMount() {
     this.props.fetchVouchers();
   }
 
   onFilter = filterValues => {
+    let filterParams = filterValues;
+
+    if (filterValues.created_start_at !== undefined) {
+      filterParams = {
+        ...filterParams,
+        created_start_at: formatDate(filterParams.created_start_at)
+      };
+    }
+
+    if (filterValues.created_end_at !== undefined) {
+      filterParams = {
+        ...filterParams,
+        created_end_at: formatDate(filterParams.created_end_at)
+      };
+    }
+
+    this.setState({ filterValues: filterParams });
     this.props.fetchVouchers(filterValues);
   };
 
@@ -41,7 +64,10 @@ class VoucherList extends Component {
           subtitle="Lista de Vouchers"
           icon="list"
         />
-        <VouchersPdf vouchers={this.props.vouchers} />
+        <VouchersPdf
+          vouchers={this.props.vouchers}
+          filterValues={this.state.filterValues}
+        />
         <VouchersFilter onSubmit={this.onFilter} />
         <table className="ui black striped unstackable table">
           <thead>
