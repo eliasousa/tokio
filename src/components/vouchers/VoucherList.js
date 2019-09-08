@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { fetchVouchers } from "../../actions/vouchers";
 import SectionHeader from "../layout/SectionHeader";
 import VouchersFilter from "../filters/VouchersFilter";
+import VouchersPdf from "./VouchersPdf";
 import { formatCurrency, formatDatetime } from "../../actions/utils";
 
 class VoucherList extends Component {
@@ -40,6 +41,7 @@ class VoucherList extends Component {
           subtitle="Lista de Vouchers"
           icon="list"
         />
+        <VouchersPdf vouchers={this.props.vouchers} />
         <VouchersFilter onSubmit={this.onFilter} />
         <table className="ui black striped unstackable table">
           <thead>
