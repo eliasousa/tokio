@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { fetchVouchers } from "../../actions/vouchers";
 import SectionHeader from "../layout/SectionHeader";
 import VouchersFilter from "../filters/VouchersFilter";
-import VouchersPdf from "./VouchersPdf";
+import VoucherPrint from "./VoucherPrint";
 import {
   formatCurrency,
   formatDatetime,
@@ -58,33 +58,38 @@ class VoucherList extends Component {
 
   render() {
     return (
-      <div>
-        <SectionHeader
-          title="Relatório"
-          subtitle="Lista de Vouchers"
-          icon="list"
-        />
-        <VouchersPdf
+      <>
+        <VoucherPrint
           vouchers={this.props.vouchers}
           filterValues={this.state.filterValues}
         />
-        <VouchersFilter onSubmit={this.onFilter} />
-        <table className="ui black striped unstackable table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Data</th>
-              <th>Taxi</th>
-              <th>Empresa</th>
-              <th>Funcionário</th>
-              <th>Origem</th>
-              <th>Destino</th>
-              <th>Valor</th>
-            </tr>
-          </thead>
-          <tbody>{this.renderTable()}</tbody>
-        </table>
-      </div>
+        <div className="not-print">
+          <SectionHeader
+            title="Relatório"
+            subtitle="Lista de Vouchers"
+            icon="list"
+          />
+          <VouchersFilter onSubmit={this.onFilter} />
+          <button className="ui icon button" onClick={() => window.print()}>
+            <i className="icon print"></i>
+          </button>
+          <table className="ui black striped unstackable table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Data</th>
+                <th>Taxi</th>
+                <th>Empresa</th>
+                <th>Funcionário</th>
+                <th>Origem</th>
+                <th>Destino</th>
+                <th>Valor</th>
+              </tr>
+            </thead>
+            <tbody>{this.renderTable()}</tbody>
+          </table>
+        </div>
+      </>
     );
   }
 }
