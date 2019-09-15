@@ -86,13 +86,13 @@ const renderTable = vouchers => {
             {formatDatetime(voucher.inserted_at)}
           </Text>
         </View>
-        <View style={styles.tableCol}>
+        <View style={{ ...styles.tableCol, width: "5%" }}>
           <Text style={styles.tableCell}>{voucher.taxi.smtt}</Text>
         </View>
-        <View style={styles.tableCol}>
+        <View style={{ ...styles.tableCol, width: "14%" }}>
           <Text style={styles.tableCell}>{voucher.company.name}</Text>
         </View>
-        <View style={styles.tableCol}>
+        <View style={{ ...styles.tableCol, width: "13%" }}>
           <Text style={styles.tableCell}>{voucher.employee.name}</Text>
         </View>
         <View style={{ ...styles.tableCol, width: "15%" }}>
@@ -104,7 +104,7 @@ const renderTable = vouchers => {
         <View style={styles.tableCol}>
           <Text style={styles.tableCell}>{voucher.note}</Text>
         </View>
-        <View style={styles.tableCol}>
+        <View style={{ ...styles.tableCol, width: "8%" }}>
           <Text style={styles.tableCell}>{formatCurrency(voucher.value)}</Text>
         </View>
       </View>
@@ -165,13 +165,13 @@ const Pdf = ({ vouchers, filterParams }) => {
             <View style={{ ...styles.tableColHeader, width: "15%" }}>
               <Text style={styles.tableCellHeader}>Data</Text>
             </View>
-            <View style={styles.tableColHeader}>
+            <View style={{ ...styles.tableColHeader, width: "5%" }}>
               <Text style={styles.tableCellHeader}>Taxi</Text>
             </View>
-            <View style={styles.tableColHeader}>
+            <View style={{ ...styles.tableColHeader, width: "14%" }}>
               <Text style={styles.tableCellHeader}>Empresa</Text>
             </View>
-            <View style={styles.tableColHeader}>
+            <View style={{ ...styles.tableColHeader, width: "13%" }}>
               <Text style={styles.tableCellHeader}>Funcionário</Text>
             </View>
             <View style={{ ...styles.tableColHeader, width: "15%" }}>
@@ -183,7 +183,7 @@ const Pdf = ({ vouchers, filterParams }) => {
             <View style={styles.tableColHeader}>
               <Text style={styles.tableCellHeader}>Obs.</Text>
             </View>
-            <View style={styles.tableColHeader}>
+            <View style={{ ...styles.tableColHeader, width: "8%" }}>
               <Text style={styles.tableCellHeader}>Valor</Text>
             </View>
           </View>
@@ -259,7 +259,7 @@ export default class VouchersPdf extends Component {
                 filterParams={this.setFilter()}
               />
             }
-            fileName="somename.pdf"
+            fileName="relatorio_vouchers.pdf"
             className="ui basic button"
           >
             {({ blob, url, loading, error }) =>
