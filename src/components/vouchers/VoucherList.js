@@ -2,14 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import { fetchVouchers } from "../../actions/vouchers";
+import { formatDate } from "../../actions/utils";
 import SectionHeader from "../layout/SectionHeader";
 import VouchersFilter from "../filters/VouchersFilter";
 import VoucherPrint from "./VoucherPrint";
-import {
-  formatCurrency,
-  formatDatetime,
-  formatDate
-} from "../../actions/utils";
+import VoucherListTable from "./VoucherListTable";
 
 class VoucherList extends Component {
   state = { filterValues: {} };
@@ -39,21 +36,20 @@ class VoucherList extends Component {
     this.props.fetchVouchers(filterValues);
   };
 
-  renderTable() {
-    return this.props.vouchers.map(voucher => {
+  renderPrintButton() {
+    if (this.props.vouchers.length > 0) {
       return (
-        <tr key={voucher.id}>
-          <td>{voucher.id}</td>
-          <td>{formatDatetime(voucher.inserted_at)}</td>
-          <td>{voucher.taxi.smtt}</td>
-          <td>{voucher.company.name}</td>
-          <td>{voucher.employee.name}</td>
-          <td>{voucher.from}</td>
-          <td>{voucher.to}</td>
-          <td>{formatCurrency(voucher.value)}</td>
-        </tr>
+        <button className="ui icon button" onClick={() => window.print()}>
+          <i className="icon print"></i> Imprimir
+        </button>
       );
-    });
+    } else {
+      return (
+        <button className="ui icon button disabled">
+          <i className="icon print"></i> Imprimir
+        </button>
+      );
+    }
   }
 
   render() {
@@ -70,24 +66,8 @@ class VoucherList extends Component {
             icon="list"
           />
           <VouchersFilter onSubmit={this.onFilter} />
-          <button className="ui icon button" onClick={() => window.print()}>
-            <i className="icon print"></i>
-          </button>
-          <table className="ui black striped unstackable table">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Data</th>
-                <th>Taxi</th>
-                <th>Empresa</th>
-                <th>Funcionário</th>
-                <th>Origem</th>
-                <th>Destino</th>
-                <th>Valor</th>
-              </tr>
-            </thead>
-            <tbody>{this.renderTable()}</tbody>
-          </table>
+          {this.renderPrintButton()}
+          <VoucherListTable vouchers={this.props.vouchers} />
         </div>
       </>
     );

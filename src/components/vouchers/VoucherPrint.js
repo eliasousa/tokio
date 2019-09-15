@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 
-import { formatCurrency, formatDatetime } from "../../actions/utils";
-
-import "./voucher.css";
+import { formatCurrency } from "../../actions/utils";
+import VoucherListTable from "./VoucherListTable";
 
 export default class VoucherPrint extends Component {
-  setFilter() {
+  translateFilter() {
     const firstVoucher = this.props.vouchers[0];
 
     const {
@@ -16,33 +15,33 @@ export default class VoucherPrint extends Component {
       created_end_at
     } = this.props.filterValues;
 
-    let newHash = {};
+    let filterParams = {};
 
     if (taxi_id !== undefined) {
-      newHash = { ...newHash, taxi: firstVoucher.taxi.smtt };
+      filterParams = { ...filterParams, taxi: firstVoucher.taxi.smtt };
     }
 
     if (company_id !== undefined) {
-      newHash = { ...newHash, company: firstVoucher.company.name };
+      filterParams = { ...filterParams, company: firstVoucher.company.name };
     }
 
     if (employee_id !== undefined) {
-      newHash = { ...newHash, employee: firstVoucher.employee.name };
+      filterParams = { ...filterParams, employee: firstVoucher.employee.name };
     }
 
     if (employee_id !== undefined) {
-      newHash = { ...newHash, employee: firstVoucher.employee.name };
+      filterParams = { ...filterParams, employee: firstVoucher.employee.name };
     }
 
     if (created_start_at !== undefined) {
-      newHash = { ...newHash, created_start_at: created_start_at };
+      filterParams = { ...filterParams, created_start_at: created_start_at };
     }
 
     if (created_end_at !== undefined) {
-      newHash = { ...newHash, created_end_at: created_end_at };
+      filterParams = { ...filterParams, created_end_at: created_end_at };
     }
 
-    return newHash;
+    return filterParams;
   }
 
   renderFilterHeader(filterParams) {
@@ -87,23 +86,6 @@ export default class VoucherPrint extends Component {
     );
   }
 
-  renderTable() {
-    return this.props.vouchers.map(voucher => {
-      return (
-        <tr key={voucher.id}>
-          <td>{voucher.id}</td>
-          <td>{formatDatetime(voucher.inserted_at)}</td>
-          <td>{voucher.taxi.smtt}</td>
-          <td>{voucher.company.name}</td>
-          <td>{voucher.employee.name}</td>
-          <td>{voucher.from}</td>
-          <td>{voucher.to}</td>
-          <td>{formatCurrency(voucher.value)}</td>
-        </tr>
-      );
-    });
-  }
-
   renderTotalValue() {
     const totalValues = this.props.vouchers.reduce(
       (totalValues, voucher) => totalValues + parseInt(voucher.value, 10),
@@ -135,22 +117,11 @@ export default class VoucherPrint extends Component {
               <p className="ui right floated header">Relatório de Vouchers</p>
             </div>
           </div>
-          {this.renderFilterHeader(this.setFilter())}
-          <table className="ui black striped unstackable table">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Data</th>
-                <th>Taxi</th>
-                <th>Empresa</th>
-                <th>Funcionário</th>
-                <th>Origem</th>
-                <th>Destino</th>
-                <th>Valor</th>
-              </tr>
-            </thead>
-            <tbody>{this.renderTable()}</tbody>
-          </table>
+
+          {this.renderFilterHeader(this.translateFilter())}
+
+          <VoucherListTable vouchers={this.props.vouchers} />
+
           {this.renderTotalValue()}
         </div>
       );

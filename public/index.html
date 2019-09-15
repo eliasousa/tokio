@@ -9,6 +9,19 @@
     />
     <meta name="theme-color" content="#000000" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <style>
+      .print {
+        display: none;
+      }
+      @media print {
+        .not-print {
+          display: none;
+        }
+        .print {
+          display: block;
+        }
+      }
+    </style>
     <title>GoVoucher</title>
   </head>
   <body>
