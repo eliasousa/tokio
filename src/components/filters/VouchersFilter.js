@@ -1,8 +1,11 @@
 import React, { Component } from "react";
-import { Field, reduxForm } from "redux-form";
+import { reduxForm, Field } from "redux-form";
 
+import { isAdmin, isCompany } from "../../services/auth";
 import { renderDatePicker } from "../formHelpers";
-import TaxisSelect from "./TaxisSelect";
+import PaymentFilterFields from "./PaymentFilterFields";
+import AdminVoucherFilterFields from "./AdminVoucherFilterFIelds";
+import CompanyVoucherFilterFields from "./CompanyVoucherFilterFields";
 
 class VouchersFilter extends Component {
   onSubmit = formValues => {
@@ -18,16 +21,16 @@ class VouchersFilter extends Component {
           onSubmit={this.props.handleSubmit(this.onSubmit)}
         >
           <div className="fields">
-            <div className="four wide field">
-              <label>Situação</label>
-              <Field name="paid" className="ui dropdown" component="select">
-                <option value="false">Aberto</option>
-                <option value="true">Pago</option>
-              </Field>
-            </div>
-            <div className="four wide field">
-              <TaxisSelect />
-            </div>
+            {isAdmin() ? (
+              this.props.payment ? (
+                <PaymentFilterFields />
+              ) : (
+                <AdminVoucherFilterFields />
+              )
+            ) : null}
+
+            {isCompany() && <CompanyVoucherFilterFields />}
+
             <div className="four wide field">
               <label>Data Inicio</label>
               <Field name="created_start_at" component={renderDatePicker} />
@@ -37,6 +40,7 @@ class VouchersFilter extends Component {
               <Field name="created_end_at" component={renderDatePicker} />
             </div>
           </div>
+
           <div className="ui right floated">
             <button
               type="submit"

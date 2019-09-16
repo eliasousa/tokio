@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
-import { Accordion, Icon, Table, Button } from "semantic-ui-react";
+import { Accordion, Icon, Table, Button, Checkbox } from "semantic-ui-react";
 
-import VouchersTable from "./VouchersTable";
+import { formatDatetime, formatCurrency } from "../../actions/utils";
 
 export default class VoucherTaxiAccordions extends Component {
   state = { activeIndex: null };
@@ -13,6 +13,33 @@ export default class VoucherTaxiAccordions extends Component {
 
     this.setState({ activeIndex: newIndex });
   };
+
+  renderTable(vouchers, onChecked) {
+    return vouchers.map(voucher => {
+      return (
+        <Table.Row key={voucher.id}>
+          <Table.Cell collapsing>
+            {voucher.paid_at === null && (
+              <Checkbox
+                id={`voucher_${voucher.id}`}
+                value={voucher.id}
+                onChange={onChecked}
+              />
+            )}
+          </Table.Cell>
+          <Table.Cell>{voucher.id}</Table.Cell>
+          <Table.Cell>{formatCurrency(voucher.value)}</Table.Cell>
+          <Table.Cell>{formatDatetime(voucher.inserted_at)}</Table.Cell>
+          <Table.Cell>{voucher.from}</Table.Cell>
+          <Table.Cell>{voucher.to}</Table.Cell>
+          <Table.Cell>{voucher.company.name}</Table.Cell>
+          <Table.Cell>
+            {voucher.paid_at !== null ? formatDatetime(voucher.paid_at) : "-"}
+          </Table.Cell>
+        </Table.Row>
+      );
+    });
+  }
 
   renderAccordions() {
     const { activeIndex } = this.state;
@@ -43,10 +70,7 @@ export default class VoucherTaxiAccordions extends Component {
                 </Table.Row>
               </Table.Header>
               <Table.Body>
-                <VouchersTable
-                  vouchers={taxi.vouchers}
-                  onChecked={this.props.onChecked}
-                />
+                {this.renderTable(taxi.vouchers, this.props.onChecked)}
               </Table.Body>
             </Table>
           </Accordion.Content>

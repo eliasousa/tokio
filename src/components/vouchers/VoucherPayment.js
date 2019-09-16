@@ -5,7 +5,7 @@ import _ from "lodash";
 import { fetchVouchers, payVouchers } from "../../actions/vouchers";
 import SectionHeader from "../layout/SectionHeader";
 import VoucherTaxiAccordions from "./VoucherTaxiAccordions";
-import VouchersFilter from "./VouchersFilter";
+import VouchersFilter from "../filters/VouchersFilter";
 
 class VoucherPayment extends Component {
   state = { checkedIds: [] };
@@ -48,7 +48,7 @@ class VoucherPayment extends Component {
           subtitle="Gerenciamento de pagamento de vouchers"
           icon="money"
         />
-        <VouchersFilter onSubmit={this.onFilter} />
+        <VouchersFilter onSubmit={this.onFilter} payment />
         <VoucherTaxiAccordions
           taxis={taxis}
           onChecked={this.onChecked}

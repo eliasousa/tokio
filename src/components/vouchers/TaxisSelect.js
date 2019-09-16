@@ -16,7 +16,7 @@ class TaxisSelect extends Component {
 
     return (
       <>
-        <label>SMTT</label>
+        <label>Taxi</label>
         <Field name="taxi_id" className="ui dropdown" component="select">
           <option value="">Selecione</option>
           {taxis.map(taxi => {

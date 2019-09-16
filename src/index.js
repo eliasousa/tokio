@@ -10,6 +10,8 @@ import App from "./components/App";
 import reducers from "./reducers";
 import { setupResponseInterceptors } from "./services/berlim";
 
+import "semantic-ui-css/semantic.min.css";
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
   reducers,
