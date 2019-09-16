@@ -16,49 +16,30 @@ class VoucherList extends Component {
   }
 
   onFilter = filterValues => {
-    let filterParams = filterValues;
+    const { created_start_at, created_end_at } = filterValues;
 
-    if (filterValues.created_start_at !== undefined) {
-      filterParams = {
-        ...filterParams,
-        created_start_at: formatDate(filterParams.created_start_at)
-      };
-    }
+    this.setState({
+      filterValues: {
+        ...filterValues,
+        ...(created_start_at && {
+          created_start_at: formatDate(created_start_at)
+        }),
+        ...(created_end_at && { created_end_at: formatDate(created_end_at) })
+      }
+    });
 
-    if (filterValues.created_end_at !== undefined) {
-      filterParams = {
-        ...filterParams,
-        created_end_at: formatDate(filterParams.created_end_at)
-      };
-    }
-
-    this.setState({ filterValues: filterParams });
     this.props.fetchVouchers(filterValues);
   };
-
-  renderPrintButton() {
-    if (this.props.vouchers.length > 0) {
-      return (
-        <button className="ui icon button" onClick={() => window.print()}>
-          <i className="icon print"></i> Imprimir
-        </button>
-      );
-    } else {
-      return (
-        <button className="ui icon button disabled">
-          <i className="icon print"></i> Imprimir
-        </button>
-      );
-    }
-  }
 
   render() {
     return (
       <>
-        <VoucherPrint
-          vouchers={this.props.vouchers}
-          filterValues={this.state.filterValues}
-        />
+        <div className="print">
+          <VoucherPrint
+            vouchers={this.props.vouchers}
+            filterValues={this.state.filterValues}
+          />
+        </div>
         <div className="not-print">
           <SectionHeader
             title="Relatório"
@@ -66,7 +47,13 @@ class VoucherList extends Component {
             icon="list"
           />
           <VouchersFilter onSubmit={this.onFilter} />
-          {this.renderPrintButton()}
+          <button
+            className="ui icon button"
+            disabled={this.props.vouchers.length === 0}
+            onClick={() => window.print()}
+          >
+            <i className="icon print"></i> Imprimir
+          </button>
           <VoucherListTable vouchers={this.props.vouchers} />
         </div>
       </>

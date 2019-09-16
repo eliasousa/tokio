@@ -6,7 +6,6 @@ export const getToken = () => localStorage.getItem(TOKEN_KEY);
 
 export const isAdmin = () => isUserType("Admin");
 export const isCompany = () => isUserType("Company");
-export const isTaxi = () => isUserType("Taxi");
 export const isAuthenticated = () => {
   const token = getToken();
   return !!token && !isTokenExpired(token);

@@ -15,33 +15,13 @@ export default class VoucherPrint extends Component {
       created_end_at
     } = this.props.filterValues;
 
-    let filterParams = {};
-
-    if (taxi_id !== undefined) {
-      filterParams = { ...filterParams, taxi: firstVoucher.taxi.smtt };
-    }
-
-    if (company_id !== undefined) {
-      filterParams = { ...filterParams, company: firstVoucher.company.name };
-    }
-
-    if (employee_id !== undefined) {
-      filterParams = { ...filterParams, employee: firstVoucher.employee.name };
-    }
-
-    if (employee_id !== undefined) {
-      filterParams = { ...filterParams, employee: firstVoucher.employee.name };
-    }
-
-    if (created_start_at !== undefined) {
-      filterParams = { ...filterParams, created_start_at: created_start_at };
-    }
-
-    if (created_end_at !== undefined) {
-      filterParams = { ...filterParams, created_end_at: created_end_at };
-    }
-
-    return filterParams;
+    return {
+      ...(taxi_id && { taxi: firstVoucher.taxi.smtt }),
+      ...(company_id && { company: firstVoucher.company.name }),
+      ...(employee_id && { employee: firstVoucher.employee.name }),
+      ...(created_start_at && { created_start_at }),
+      ...(created_end_at && { created_end_at })
+    };
   }
 
   renderFilterHeader(filterParams) {
@@ -104,7 +84,7 @@ export default class VoucherPrint extends Component {
   render() {
     if (this.props.vouchers && this.props.vouchers.length > 0) {
       return (
-        <div className="print">
+        <>
           <div className="ui grid middle aligned">
             <div className="eight wide column">
               <img
@@ -117,13 +97,12 @@ export default class VoucherPrint extends Component {
               <p className="ui right floated header">Relatório de Vouchers</p>
             </div>
           </div>
-
           {this.renderFilterHeader(this.translateFilter())}
 
           <VoucherListTable vouchers={this.props.vouchers} />
 
           {this.renderTotalValue()}
-        </div>
+        </>
       );
     } else {
       return null;
